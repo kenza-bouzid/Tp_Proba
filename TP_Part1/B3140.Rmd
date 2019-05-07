@@ -1,97 +1,175 @@
 ---
 title: "Compte Rendu TP génération de nombres aléatoires et probabilités"
-author: "DHamidovic-KBouzid"
+author: "auteurs: DHamidovic-KBouzid B3140"
 date: "07/05/2019"
 output:
-  html_document: default
-  word_document: default
+html_document: default
 ---
-#Partie 1.
+# Introduction 
 
-##Question 2.1
+Le but de ce tp est d'étudier la qualité de quelques générateurs aléatoires à travers des tests statistiques.
 
-Observation : répartition uniforme de valeurs entre les différents intervalles pour certains générateurs mais pas pour vonNeumann
+***
+# Partie 1 : Tests de générateurs de pseudo-aléatoires
+***
+## Qualité de la séquence produite par un générateur
 
-Explication: on boucle sur zero quand tombe sur des valeurs vec des 00 au milieu ce qui explique le pique en zero, puis on reboucle sur d'autres valeurs qu'on rencontrent souvent au milieu des puissances de 2. Ainsi la répartion des valeurs aléatoires est non uniforme sur l'ensemble de l'intervalle de valeurs. C'est pas top. Cela dépende également de la graine choisie, en l'occurrence 215 est une assez bonne valeur. On aurait eu de répartition plus médiocre pour une mauvaise graine.
+Après avoir implémenter les générateurs à congruence linéaire: Randu et Standard Minimal, nous fournissons dans ce qui suit les résultats des différents tests que nous avons réalisé afin de juger de la qualité des séquences produites par les quatre générateurs : Von Neumann - Mersenne Txister - Randu - Standard Minimal. 
+
+### Test Visuel
+
+***
+
+#### Histogramme d'unifromité 
+
+Ce premier test permet de visualiser la distribution des nombres aléatoires produits par les différents générateurs sur l'ensemble de l'intervalle de valeurs possibles. Cet intervalle diffère d'un générateur à un autre. 
+Le tableau suivant récapitule les intervalles des différents générateurs faisant sujet de notre étude. 
+
+Générateur | Intervalle de valeurs 
+------------- | -------------
+Von Neumann | [0 9999]
+Mersenne Twister | [0 $2^32-1$] 
+Randu | [0 $2^31-1$]
+Standard Minimal | [0 $2^32-1$]
+
+Il s'agira ainsi de représenter les séquences de valeurs produites par ces géénrateurs sous la forme d'histogramme afin d'avoir une idée sur la répartition de ces séquences. 
+
+Nous obtenons les histogrammes suivants pour k=1000 valeurs: 
+
+***
 
 ```{r echo=FALSE , message=FALSE}
   source('main.R')
   
-  testVisuel1()
+  testVisuelHist(k=1000)
 ```
 
+***
 
+* Observation 
 
-##Question 2.2
+Nous relevons ainsi une distribution médiocre pour le générateur Von Neumann, avec une forte condensation autour du 0. Certains sous intervalles de l'intaervalle [0 9999] ne sont jamais visité. Ce qui témoigne des limites de ce générateur.
 
-La distribution des valeurs aléatoires de Mersenne Twister et Randu sont bien uniformes et moins bien pour merssenne Twister et mediocre pour Von neumman (c'est pas vraiment aléatoire) 
+Nous remarquons une répartition plutôt uniforme pour les générateurs Mersenne Twister, Randu et Standard Minimal, avec une meilleure stabilité pour Standard Minimal.
+Ce caractère uniforme reste tout de même criticable malgré qu'il soit meilleur que celui observé pour Von Neumann. En effet, on aurait souhaité une répartition quasi uniforme ce qui est difficilemente aténiable avec seulement 1000 valeurs par générateurs.
+
+Les hsitogrammes suivants sont obtenues avec k = 100000 valeurs: 
+
+***
+
 ```{r echo=FALSE , message=FALSE}
-  testVisuel2()
+  source('main.R')
+  
+  testVisuelHist(k=100000)
 ```
 
-##Question 1.3
-On va faire un raisonnement par l'absure 
-Hyp : générateur ok 
-Sn = sigma ... 
-Sn/racine (n) suit une loi normale (0,1) selon le théorème de la limite centrale 
-On regarde la probaliite de P(sn/racine(n)>Sobs) 
-si c < à 1% c'est pas bon tout ce qu'on peut conclue on regette l'hyp "generateur optimal" 
+*** 
 
-On peut mettre du code qui sera exécuté mais qui n'aparaitra pas dans le compte rendu.
+Nous notons ainsi une meilleure uniformité. Ceci est tout à fait logique car nous condensons plus de valeurs sur les différents intervalles en augmentant le nombre de séquences ce qui fait que la fréquence des valeurs de chaque intervalle augmente jusqu'à convergence vers une certaine limite de fréquence. Le dernier intervalle reste tout de même assez fréquenté par les valeurs aléatoires produites. 
 
-On lance l'algo pour plusieurs graine différente 
-MersenneTwister et Standard marche tout le temms avec une proba de 0.01 de ne pas marcher suivant mle modèle d'hypo 
-Von Neumann ne marche pas du touuut on le savait deja 
-Randu marche pour certaines graines uniquement 
+* Explication 
 
+Nous pouvons expliqué l'uniformité médiocre du générateur Von neumann par le fait qu'on reboucle sur certaines valeurs précises. En effet, la forte condensation en zéro est dû au fait qu'on reboucle en continue sur 0 sans en sortir une fois qu'on tombe sur une puissance de deux avec que des zéros au milieu, cette boucle est ainsi absorbante est empêche le générateur de produire de nouvelles valeurs autres que 0. Puis on reboucle de la même manière sur certaines valeurs avec une fréquence moins accrue car on arrive tout de même à sortir de ces boucles. 
 
-```{r, include=FALSE}
-library(rngWELL)
-library(randtoolbox)
-source('generateurs.R')
+En ce qui concerne les autres générateurs, leurs algorithmes sont suffisamment bons pour pouvoir assurer une aussi bonne uniformité.Un autre facteur important qui impacte considérablement le caractère uniforme de ces séquences est la graine d'initialisation. Nous utilisons une graine=215 pour nos tests qui est en l'occurence une assez bonne valeur. On aurait eu une répartition moins uniforme pour une mauvaise graine.
 
-sVN <- 2504
-sMT <- 2504
-Nsimu <- 1000
-Nrepet <- 20
+***
+
+#### Courbe de dépendance 
+
+Une autre manière d'étudier la qualité des séquences produites consiste à observer l'inter-dépendance de celles-ci. Pour cela nous traçons la valeur obtenue en fonction de la valeur précédente de l'algorithme. 
+
+Nous obtenons les courbes suivantes: 
+
+***
+```{r echo=FALSE , message=FALSE}
+  #testVisuelPlot()
 ```
 
-Ensuite on peut aussi mettre du code qui apparaît dans le compte-rendu. 
-```{r}
-vn <- VonNeumann(Nsimu,Nrepet,sVN)
-mt <- MersenneTwister(Nsimu,Nrepet,sMT)
+***
 
-par(mfrow=c(1,2))
-hist(mt[,1],xlab='',main='Mersenne Twister')
-hist(vn[,1],xlab='',main='Von Neumann')
+* Commentaires
 
-(bit_mt <- binary(mt[1,1]))
+Nous observons ainsi une dépendance asez médiocre pour Von Neummon avec une assez forte connexion entre le zero et ses prédécesseurs. Ceci tout à fait logique encore une fois, $0^2$ étant égal à 0. On observe également des piques de dépendances pour quelques valeurs notamment autour de 4000 et 8000 qu'on retrouvait également au niveau de l'historamme.   
+
+Mersenne Twister présente une dépendance plus uniforme sur l'ensemble de l'espace de valeurs. Randu et Standard Minimal présente compte à eux une dépendance plus bruitée. Leurs valeurs occupent ainsi l'ensemble de l'espace de valeur. 
+ 
+
+Attention le caractère uniforme ou interdépendant d'un générateur ne juge pas complétement de sa qualité et ne détermine pas son caractère aléatoire qui fera l'objet des tests suivants. 
+
+***
+
+### Test de fréquence monobit
+
+Nos premier jeu de tests étudié les séquences en elles même en visualisant leur distribution et leur inter-dépendance. Nous nous interessons dans ce qui suit à ces séquences en étudiant celles-ci bit par bit. Il s'agira d'alligner toutes les valeurs binaires des différentes séquences côte à côte et d'étudier le caractère aléatoire des valeurs que prennent ces différents bits.Ceci a pour intérêt de partiellement déterminer le caractère aléatoire du générateur étudié. 
+
+Nous allons mener pour cela un raisonnement par l'absurde. 
+
+On suppose dans un premier lieu que notre générateur X est bien aléatoire 
+On note Sn la séquence globale résulatant de la concaténation binaire des différentes séquences. Chacun des bits de cette séquence binaire suit ainsi une loi de Bernouilli. 
+Ainsi selon le théorème de la limite centrale $Sn/sqrt(n)$ suit une loi normale centrée réduite. 
+
+Nous étudirons ainsi la probabilité de cette séquence, Si celle ci est inférieure à 1% nous affirmons selon la règle de décision à 1% que celle-ci n'est donc pas aléatoire. 
+
+Après avoir implémenté la fonction déterminant cette valeur de probabilité. Nous réalisons des tests sur une séquence de k=1000 et pour 100 initialisations différentes. 
+Nous exploitons ces valeurs de trois manières différentes.
+
+***
+
+```{r echo=FALSE , message=FALSE}
+  testFreqVon()
 ```
 
+***
 
-Comme vous pouvez le voir, les retours numériques de R ainsi que les sorties graphiques sont intégrés dans le compte-rendu.
+*Commentaire
 
-##Quelques plus pour la mise en forme
+A compléter 
 
-Il est possible de mettre des mots *en italique* ou **en gras**.
-On peut également faire des listes :
+***
 
-* Item 1 
+```{r echo=FALSE , message=FALSE}
+  testFreqMers()
+```
 
-* Item 2 
+***
 
-    + sub-item 1 
+*Commentaire
 
-    + sub-item 2 
+A compléter 
 
-Et des tableaux :
+***
 
-Permière colonne | Deuxième colonne 
-------------- | ------------- 
-a    | x        
-b        | y        
+```{r echo=FALSE , message=FALSE}
+  testFreqMers()
+```
 
-Ou mettre des formules : $Aire = \pi\,r^{2}$.
+***
 
-###Remarque
-Rmarkdown fait gagner du temps pour les compte-rendus et permet d'intégrer plus facilement des parties de code quand on le souhaite. Toutefois, je vous conseille d'avoir un fichier .R dans lequel vous ne mettez que du code et d'intégrer celui-ci dans le .Rmd lorsque vous obtenez des résultats. Faites les commentaires au fur et à mesure et n'attendez pas la dernière heure !
+*Commentaire
+
+A compléter 
+
+***
+
+```{r echo=FALSE , message=FALSE}
+  testFreqStd()
+```
+
+***
+
+*Commentaire
+
+A compléter 
+
+
+***
+
+### Test des runs 
+
+***
+
+### Test d'ordre 
+
+
+
