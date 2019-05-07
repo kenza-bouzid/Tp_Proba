@@ -197,6 +197,92 @@ testRuns<-function()
   Runsbis(t,31)
 }
 
+#Cette fonction fournit un test de runs pour le générateur Von Neumann 
+# il s'agit de visualiser un histogramme des probabilités calculés pour t initialisations 
+# différentes et une courbe des probabilité en fonctions de ces graines d'initialisation
+# n représente le nombre de bits pris en compte dans chacune des séqeunces, il s'agit de 14
+# pour Von Neumann obtenu grâce à la partie entière de log2(9999) + 1
+testRunsVon<-function(k=1000,t=100,n=14)
+{
+  par(mfrow=c(2,2))
+  
+  freq<-rep(1,t)
+  graine<-rep(1,t)
+  
+  for( i in 1:t)
+  {
+    graine[i]<-sample.int(10000,1)
+    freq[i]<-Frequency(y<-VonNeumann(k,graine=graine[i]),n)
+  }
+  
+  hist(freq,100,xlab='',main='Fréquence de probabilité Von Neuman version Runs')
+  plot(graine,freq, main='Courbe des probabilités en fonction des graines Von Neuman (Runs)')
+}
+#Cette fonction fournit un test de runs pour le générateur Mersenne Twister 
+# il s'agit de visualiser un histogramme des probabilités calculés pour t initialisations 
+# différentes et une courbe des probabilité en fonctions de ces graines d'initialisation
+# n représente le nombre de bits pris en compte dans chacune des séqeunces, il s'agit de 32
+# pour Mersenne
+testRunsMers<-function(k=1000,t=100,n=32)
+{
+  par(mfrow=c(2,2))
+  
+  freq<-rep(1,t)
+  graine<-rep(1,t)
+  
+  for( i in 1:t)
+  {
+    graine[i]<-sample.int(10000,1)
+    freq[i]<-Frequency(y<-MersenneTwister(k,graine=graine[i]),n)
+  }
+  
+  hist(freq,100,xlab='',main='Fréquence de probabilité Mersenne Twister version Runs')
+  plot(graine,freq, main='Courbe des probabilités en fonction des graines Mersenne Twister (Runs)')
+}
+
+#Cette fonction fournit un test de runs pour le générateur Randu 
+# il s'agit de visualiser un histogramme des probabilités calculés pour t initialisations 
+# différentes et une courbe des probabilité en fonctions de ces graines d'initialisation
+# n représente le nombre de bits pris en compte dans chacune des séqeunces, il s'agit de 31
+# pour Randu
+testRunsRandu<-function(k=1000,t=100,n=31)
+{
+  par(mfrow=c(2,1))
+  
+  freq<-rep(1,t)
+  graine<-rep(1,t)
+  
+  for( i in 1:t)
+  {
+    graine[i]<-sample.int(10000,1)
+    freq[i]<-Frequency(y<-Randu(k,graine=graine[i]),n)
+  }
+  
+  hist(freq,100,xlab='',main='Fréquence de probabilité Randu version Runs')
+  plot(graine,freq, main='Courbe des probabilités en fonction des graines Randu (Runs)')
+}
+
+#Cette fonction fournit un test de runs pour le générateur Standard Minimal 
+# il s'agit de visualiser un histogramme des probabilités calculés pour t initialisations 
+# différentes et une courbe des probabilité en fonctions de ces graines d'initialisation
+# n représente le nombre de bits pris en compte dans chacune des séqeunces, il s'agit de 31
+# pour Standard Minimal
+testRunsStd<-function(k=1000,t=100,n=31)
+{
+  par(mfrow=c(2,1))
+  
+  freq<-rep(1,t)
+  graine<-rep(1,t)
+  
+  for( i in 1:t)
+  {
+    graine[i]<-sample.int(10000,1)
+    freq[i]<-Frequency(y<-StandardMinimal(k,graine=graine[i]),n)
+  }
+  
+  hist(freq,100,xlab='',main='Fréquence de probabilité Standard Minimal version Runs')
+  plot(graine,freq, main='Courbe des probabilités en fonction des graines Standard Minimal(Runs)')
+}
 ##############################################################################################
 
 
