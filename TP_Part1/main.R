@@ -1,11 +1,13 @@
 #1.2.1 Test Visuel 
 
-source('D:/MesSauvegardes/Drive_d/insa/3if/S2/Proba/TP_Part1/generateurs.R')
+source('generateurs.R')
 library('rngWELL')
 library('randtoolbox')
 
 testVisuel1<-function ()
 {
+  par(mfrow=c(2,2))
+  
   g<-215
   x<-VonNeumann(1000,graine=g)
   hist(x[,1],100,xlab='',main='Von Neumann')
@@ -19,8 +21,11 @@ testVisuel1<-function ()
     
 }
 
+
+
 testVisuel2<-function ()
 {
+  par(mfrow=c(2,2))
   g<-215
   n<-1000
   x<-VonNeumann(1000,graine=g)
@@ -33,6 +38,64 @@ testVisuel2<-function ()
   plot(t[1:(n-1)], t[2:n],main='StandardMinimal')
   
 }
+
+testFreqVon<-function()
+{
+  freq<-rep(1,100)
+  for( i in 1:100)
+  {
+    freq[i]<-Frequency(VonNeumann(1000,graine=sample.int(10000,1)),14)
+  }
+  hist(freq,xlab='',main='Histo frequence Von Neumann pour 100 valeurs de graines aléatoires')
+
+}
+
+testFreqMers<-function()
+{
+  freq<-rep(1,100)
+  graine<-rep(1,100)
+  for( i in 1:100)
+  {
+    graine[i]<-sample.int(10000,1)
+    freq[i]<-Frequency(MersenneTwister(1000,graine=graine[i]),32)
+  }
+  hist(freq,100,xlab='',main='Histo frequence Mersenne Twister pour 100 valeurs de graines aléatoires')
+  plot(graine,freq, main='plot frequence Mersenne Twister pour 100 valeurs de graines aléatoires')
+  
+}
+
+testLoiNormaleVon <-function()
+{
+  freq<-rep(1,100)
+  graine<-rep(1,100)
+  sobs<-rep(1,100)
+  for( i in 1:100)
+  {
+    graine[i]<-sample.int(10000,1)
+    y<-VonNeumann(1000,graine=graine[i])
+    freq[i]<-Frequency(y,32)
+    sobs[i]<-Sobs(y,32)
+  }
+  
+  plot(sobs,freq,main='Verification de la loi normal pour Von Neumann')
+}
+
+testLoiNormaleMers <-function()
+{
+  freq<-rep(1,100)
+  graine<-rep(1,100)
+  sobs<-rep(1,100)
+  for( i in 1:100)
+  {
+    graine[i]<-sample.int(10000,1)
+    y<-MersenneTwister(1000,graine=graine[i])
+    freq[i]<-Frequency(y,32)
+    sobs[i]<-Sobs(y,32)
+  }
+  
+  plot(sobs,freq,main='Verification de la loi normal pour Mersenne Twister')
+}
+
 
 testFrequence<-function()
 {

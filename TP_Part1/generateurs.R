@@ -79,6 +79,23 @@ Frequency <-function (x,nb)
   return(pvaleur)
 }
 
+Sobs <-function (x,nb)
+{
+  sn<-0
+  for(i in 1:length(x))
+  {
+    c<-binary(x[i])
+    
+    for(j in (33-nb):32)
+    {
+      sn<-sn+2*c[j]-1
+    } 
+  }
+  
+  sobs<-abs(sn)/sqrt(length(x)*nb)
+  return(sobs)
+}
+
 Runs<-function(x,nb)
 {
   vBit<-0 

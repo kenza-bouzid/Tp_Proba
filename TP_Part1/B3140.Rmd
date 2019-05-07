@@ -2,7 +2,9 @@
 title: "Compte Rendu TP génération de nombres aléatoires et probabilités"
 author: "DHamidovic-KBouzid"
 date: "07/05/2019"
-output: html_document
+output:
+  html_document: default
+  word_document: default
 ---
 #Partie 1.
 
@@ -10,11 +12,22 @@ output: html_document
 
 Observation : répartition uniforme de valeurs entre les différents intervalles pour certains générateurs mais pas pour vonNeumann
 
-Explication: on boucle sur zero quand tombe sur des valeurs vec des 00 au milieu ce qui explique le pique en zero, puis on reboucle sur d'autres valeurs qu'on rencontrent souvent au milieu des puissances de 2. Ainsi la répartion des valeurs aléatoires est non uniforme sur l'ensemble de l'intervalle de valeurs. C'est pas top. Cela dépende également de la graine choisie, en l'occurrence 215 est une assez bonne valeur. On aurait eu de répartition plus médiocre pour une mauvaise graine. 
+Explication: on boucle sur zero quand tombe sur des valeurs vec des 00 au milieu ce qui explique le pique en zero, puis on reboucle sur d'autres valeurs qu'on rencontrent souvent au milieu des puissances de 2. Ainsi la répartion des valeurs aléatoires est non uniforme sur l'ensemble de l'intervalle de valeurs. C'est pas top. Cela dépende également de la graine choisie, en l'occurrence 215 est une assez bonne valeur. On aurait eu de répartition plus médiocre pour une mauvaise graine.
+
+```{r echo=FALSE , message=FALSE}
+  source('main.R')
+  
+  testVisuel1()
+```
+
+
 
 ##Question 2.2
 
 La distribution des valeurs aléatoires de Mersenne Twister et Randu sont bien uniformes et moins bien pour merssenne Twister et mediocre pour Von neumman (c'est pas vraiment aléatoire) 
+```{r echo=FALSE , message=FALSE}
+  testVisuel2()
+```
 
 ##Question 1.3
 On va faire un raisonnement par l'absure 
@@ -32,7 +45,7 @@ Von Neumann ne marche pas du touuut on le savait deja
 Randu marche pour certaines graines uniquement 
 
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 library(rngWELL)
 library(randtoolbox)
 source('generateurs.R')
