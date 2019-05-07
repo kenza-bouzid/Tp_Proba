@@ -204,7 +204,7 @@ testRuns<-function()
 # pour Von Neumann obtenu grâce à la partie entière de log2(9999) + 1
 testRunsVon<-function(k=1000,t=100,n=14)
 {
-  par(mfrow=c(2,2))
+  par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -225,7 +225,7 @@ testRunsVon<-function(k=1000,t=100,n=14)
 # pour Mersenne
 testRunsMers<-function(k=1000,t=100,n=32)
 {
-  par(mfrow=c(2,2))
+  par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -247,7 +247,7 @@ testRunsMers<-function(k=1000,t=100,n=32)
 # pour Randu
 testRunsRandu<-function(k=1000,t=100,n=31)
 {
-  par(mfrow=c(2,1))
+  par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -269,7 +269,7 @@ testRunsRandu<-function(k=1000,t=100,n=31)
 # pour Standard Minimal
 testRunsStd<-function(k=1000,t=100,n=31)
 {
-  par(mfrow=c(2,1))
+  par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)

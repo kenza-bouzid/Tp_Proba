@@ -141,7 +141,7 @@ A compléter
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testFreqMers()
+  testFreqRandu()
 ```
 
 ***
@@ -168,6 +168,58 @@ A compléter
 ### Test des runs 
 
 ***
+
+***
+
+```{r echo=FALSE , message=FALSE}
+  testRunsVon()
+```
+
+***
+
+*Commentaire
+
+A compléter 
+
+***
+
+```{r echo=FALSE , message=FALSE}
+  testRunsMers()
+```
+
+***
+
+*Commentaire
+
+A compléter 
+
+***
+
+```{r echo=FALSE , message=FALSE}
+  testRunsRandu()
+```
+
+***
+
+*Commentaire
+
+A compléter 
+
+***
+
+```{r echo=FALSE , message=FALSE}
+  testRunsStd()
+```
+
+***
+
+*Commentaire
+
+A compléter 
+
+
+***
+
 
 ### Test d'ordre 
 
