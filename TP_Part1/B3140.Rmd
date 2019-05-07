@@ -1,0 +1,84 @@
+---
+title: "Compte Rendu TP génération de nombres aléatoires et probabilités"
+author: "DHamidovic-KBouzid"
+date: "07/05/2019"
+output: html_document
+---
+#Partie 1.
+
+##Question 2.1
+
+Observation : répartition uniforme de valeurs entre les différents intervalles pour certains générateurs mais pas pour vonNeumann
+
+Explication: on boucle sur zero quand tombe sur des valeurs vec des 00 au milieu ce qui explique le pique en zero, puis on reboucle sur d'autres valeurs qu'on rencontrent souvent au milieu des puissances de 2. Ainsi la répartion des valeurs aléatoires est non uniforme sur l'ensemble de l'intervalle de valeurs. C'est pas top. Cela dépende également de la graine choisie, en l'occurrence 215 est une assez bonne valeur. On aurait eu de répartition plus médiocre pour une mauvaise graine. 
+
+##Question 2.2
+
+La distribution des valeurs aléatoires de Mersenne Twister et Randu sont bien uniformes et moins bien pour merssenne Twister et mediocre pour Von neumman (c'est pas vraiment aléatoire) 
+
+##Question 1.3
+On va faire un raisonnement par l'absure 
+Hyp : générateur ok 
+Sn = sigma ... 
+Sn/racine (n) suit une loi normale (0,1) selon le théorème de la limite centrale 
+On regarde la probaliite de P(sn/racine(n)>Sobs) 
+si c < à 1% c'est pas bon tout ce qu'on peut conclue on regette l'hyp "generateur optimal" 
+
+On peut mettre du code qui sera exécuté mais qui n'aparaitra pas dans le compte rendu.
+
+On lance l'algo pour plusieurs graine différente 
+MersenneTwister et Standard marche tout le temms avec une proba de 0.01 de ne pas marcher suivant mle modèle d'hypo 
+Von Neumann ne marche pas du touuut on le savait deja 
+Randu marche pour certaines graines uniquement 
+
+
+```{r setup, include=FALSE}
+library(rngWELL)
+library(randtoolbox)
+source('generateurs.R')
+
+sVN <- 2504
+sMT <- 2504
+Nsimu <- 1000
+Nrepet <- 20
+```
+
+Ensuite on peut aussi mettre du code qui apparaît dans le compte-rendu. 
+```{r}
+vn <- VonNeumann(Nsimu,Nrepet,sVN)
+mt <- MersenneTwister(Nsimu,Nrepet,sMT)
+
+par(mfrow=c(1,2))
+hist(mt[,1],xlab='',main='Mersenne Twister')
+hist(vn[,1],xlab='',main='Von Neumann')
+
+(bit_mt <- binary(mt[1,1]))
+```
+
+
+Comme vous pouvez le voir, les retours numériques de R ainsi que les sorties graphiques sont intégrés dans le compte-rendu.
+
+##Quelques plus pour la mise en forme
+
+Il est possible de mettre des mots *en italique* ou **en gras**.
+On peut également faire des listes :
+
+* Item 1 
+
+* Item 2 
+
+    + sub-item 1 
+
+    + sub-item 2 
+
+Et des tableaux :
+
+Permière colonne | Deuxième colonne 
+------------- | ------------- 
+a    | x        
+b        | y        
+
+Ou mettre des formules : $Aire = \pi\,r^{2}$.
+
+###Remarque
+Rmarkdown fait gagner du temps pour les compte-rendus et permet d'intégrer plus facilement des parties de code quand on le souhaite. Toutefois, je vous conseille d'avoir un fichier .R dans lequel vous ne mettez que du code et d'intégrer celui-ci dans le .Rmd lorsque vous obtenez des résultats. Faites les commentaires au fur et à mesure et n'attendez pas la dernière heure !
