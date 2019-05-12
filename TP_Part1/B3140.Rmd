@@ -122,7 +122,7 @@ Nous exploitons ces valeurs de trois manières différentes.
 
 ***
 
-*Commentaire
+* Commentaire
 
 Pour 100 tests différents, on observe pour Von Neumann, une fréquence extrêmement élevé pour des Pvaleurs très petites. C'est à dire que dans la majorité des cas, Von Neumann obtient une Pvaleur en dessous dudit 1%. On voit aussi que S<sub>obs</sub> ne suit pas une loi normale N(0,1), tout cela nous pousse à conclure que Von Neumann ne passe pas le test de fréquence Monobit.
 
@@ -134,7 +134,7 @@ Pour 100 tests différents, on observe pour Von Neumann, une fréquence extrême
 
 ***
 
-*Commentaire
+* Commentaire
 
 On a ici une répartition beaucoup plus homogène des Pvaleurs, avec une Pvaleur très proche de 0. Et on observe aussi que S<sub>obs</sub> suit une loi normale N(0,1) ce qui nous permet de conclure qu'elle passe le test de fréquence monobit.
 
@@ -146,7 +146,7 @@ On a ici une répartition beaucoup plus homogène des Pvaleurs, avec une Pvaleur
 
 ***
 
-*Commentaire
+* Commentaire
 
 Pour Randu on quelque chose qui a l'air un peu meilleur que Von Neumann mais on observe tout de même beaucoup de Pvaleur très proche de zéro, et cela pour des graines répartis sur tout l'intervalle de valeurs donné initialement. On observe aussi que S<sub>obs</sub> ne suit pas une loi normale N(0,1). Donc Randu ne passe pas le test de fréquence monobit.
 
@@ -158,7 +158,7 @@ Pour Randu on quelque chose qui a l'air un peu meilleur que Von Neumann mais on 
 
 ***
 
-*Commentaire
+* Commentaire
 
 Ici on a quelque chose de très similaire à Mersenne Twistes. Pour 100 tests, très peu de Pvaleurs proches de 0  S<sub>obs</sub> suivant une loi normale N(0,1). Tout comme Mersenne Twistes, Standard Minimal passe le test de fréquence monobit.
 
@@ -177,7 +177,7 @@ Ici on a quelque chose de très similaire à Mersenne Twistes. Pour 100 tests, t
 
 ***
 
-*Commentaire
+* Commentaire
 
 Ici on effectue un test Run pour le générateur de Von Neumann. On observe ainsi que sur 100 tests, les PValeurs sont en majorité très proches de 0. Sur les deux graphiques on voit ainsi que seulement 2 graines ont des Pvaleurs au dessus dudit 1%. Von Neumann ne passe pas le test Run.
 
@@ -189,7 +189,7 @@ Ici on effectue un test Run pour le générateur de Von Neumann. On observe ains
 
 ***
 
-*Commentaire
+* Commentaire
 
 Pour Mersenne Twister, très peu de Pvaleurs proches de 0 sont observés et aucune en dessous de la barre des 1%. Comme pour les autres tests, Mersenne Twister passe le test Run sans difficulté.
 
@@ -201,7 +201,7 @@ Pour Mersenne Twister, très peu de Pvaleurs proches de 0 sont observés et aucu
 
 ***
 
-*Commentaire
+* Commentaire
 
 Randu est nettement meilleur que Von Neumann mais on observe que presque 70 Pvaleurs sont en dessous de la barre des 1%. On en conclut que Randu ne passe pas le test Run.
 
@@ -213,9 +213,9 @@ Randu est nettement meilleur que Von Neumann mais on observe que presque 70 Pval
 
 ***
 
-*Commentaire
+* Commentaire
 
-Standard minimal n'a que 3 valeurs en dessous de la barre des 1%, pour la majorité des graines testés on observe bien que la séquence est aléatoire. On en conclut que Standard Minimal passe bien le test Run.
+Standard minimal n'a que très peu de valeurs en dessous de la barre des 1%, pour la majorité des graines testés on observe bien que la séquence est aléatoire. On en conclut que Standard Minimal passe bien le test Run.
 
 
 ***
@@ -224,4 +224,44 @@ Standard minimal n'a que 3 valeurs en dessous de la barre des 1%, pour la majori
 ### Test d'ordre 
 
 
+```{r echo=FALSE , message=FALSE}
+  testOrdreVon()
+```
+***
 
+* Commentaire
+
+On voit que les Pvaleurs sont soit nul soit très inférieur à 0,01. On en conclut que Von Neummann ne passe pas le test d'ordre.
+
+***
+
+```{r echo=FALSE , message=FALSE}
+  testOrdreMers()
+```
+***
+
+* Commentaire
+
+Comme pour les autres testes, le générateur de Mersenne Twistes passe largement le test.
+
+***
+```{r echo=FALSE , message=FALSE}
+  testOrdreRandu()
+```
+***
+
+* Commentaire
+
+Ici on observe quelque chose d'intéressant. Randu qui n'avait pas passé les deux tests précedents, passe celui-ci avec succès en n'ayant que quelques Pvaleurs en dessous de 0,01.
+
+***
+```{r echo=FALSE , message=FALSE}
+  testOrdreStd()
+```
+***
+
+* Commentaire
+
+On voit que pour Standard Minimal, on a que quelques Pvaleurs en dessous de 0, on peut en conclure que le générateur passe le test d'ordre.
+
+***
