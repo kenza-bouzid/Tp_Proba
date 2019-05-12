@@ -124,7 +124,7 @@ Nous exploitons ces valeurs de trois manières différentes.
 
 *Commentaire
 
-A compléter 
+Pour 100 tests différents, on observe pour Von Neumann, une fréquence extrêmement élevé pour des Pvaleurs très petites. C'est à dire que dans la majorité des cas, Von Neumann obtient une Pvaleur en dessous dudit 1%. On voit aussi que S<sub>obs</sub> ne suit pas une loi normale N(0,1), tout cela nous pousse à conclure que Von Neumann ne passe pas le test de fréquence Monobit.
 
 ***
 
@@ -136,7 +136,7 @@ A compléter
 
 *Commentaire
 
-A compléter 
+On a ici une répartition beaucoup plus homogène des Pvaleurs, avec une Pvaleur très proche de 0. Et on observe aussi que S<sub>obs</sub> suit une loi normale N(0,1) ce qui nous permet de conclure qu'elle passe le test de fréquence monobit.
 
 ***
 
@@ -148,7 +148,7 @@ A compléter
 
 *Commentaire
 
-A compléter 
+Pour Randu on quelque chose qui a l'air un peu meilleur que Von Neumann mais on observe tout de même beaucoup de Pvaleur très proche de zéro, et cela pour des graines répartis sur tout l'intervalle de valeurs donné initialement. On observe aussi que S<sub>obs</sub> ne suit pas une loi normale N(0,1). Donc Randu ne passe pas le test de fréquence monobit.
 
 ***
 
@@ -160,7 +160,7 @@ A compléter
 
 *Commentaire
 
-A compléter 
+Ici on a quelque chose de très similaire à Mersenne Twistes. Pour 100 tests, très peu de Pvaleurs proches de 0  S<sub>obs</sub> suivant une loi normale N(0,1). Tout comme Mersenne Twistes, Standard Minimal passe le test de fréquence monobit.
 
 
 ***
@@ -179,7 +179,7 @@ A compléter
 
 *Commentaire
 
-A compléter 
+Ici on effectue un test Run pour le générateur de Von Neumann. On observe ainsi que sur 100 tests, les PValeurs sont en majorité très proches de 0. Sur les deux graphiques on voit ainsi que seulement 2 graines ont des Pvaleurs au dessus dudit 1%. Von Neumann ne passe pas le test Run.
 
 ***
 
@@ -191,7 +191,7 @@ A compléter
 
 *Commentaire
 
-A compléter 
+Pour Mersenne Twister, très peu de Pvaleurs proches de 0 sont observés et aucune en dessous de la barre des 1%. Comme pour les autres tests, Mersenne Twister passe le test Run sans difficulté.
 
 ***
 
@@ -203,7 +203,7 @@ A compléter
 
 *Commentaire
 
-A compléter 
+Randu est nettement meilleur que Von Neumann mais on observe que presque 70 Pvaleurs sont en dessous de la barre des 1%. On en conclut que Randu ne passe pas le test Run.
 
 ***
 
@@ -215,7 +215,7 @@ A compléter
 
 *Commentaire
 
-A compléter 
+Standard minimal n'a que 3 valeurs en dessous de la barre des 1%, pour la majorité des graines testés on observe bien que la séquence est aléatoire. On en conclut que Standard Minimal passe bien le test Run.
 
 
 ***

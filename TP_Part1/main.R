@@ -83,6 +83,7 @@ testFreqVon<-function(k=1000,t=100,n=14)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité Von Neuman')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines Von Neuman')
+  abline(h=0.01, col="red")
   plot(sobs,freq,main='Verification de la loi normal pour Von Neumann')
 }
 
@@ -110,6 +111,7 @@ testFreqMers<-function(k=1000,t=100,n=32)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité Mersenne Twister')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines Mersenne Twister')
+  abline(h=0.01, col="red")
   plot(sobs,freq,main='Verification de la loi normal pour Mersenne Twister')
 }
 
@@ -137,6 +139,7 @@ testFreqRandu<-function(k=1000, t=100, n=31)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité Randu')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines Randu')
+  abline(h=0.01, col="red")
   plot(sobs,freq,main='Verification de la loi normal pour Randu')
 }
 
@@ -164,6 +167,7 @@ testFreqStd<-function(k=1000, t=100, n=31)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité StandardMinimal')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines StandardMinimal')
+  abline(h=0.01, col="red")
   plot(sobs,freq,main='Verification de la loi normal pour StandardMinimal')
 }
 
@@ -217,6 +221,7 @@ testRunsVon<-function(k=1000,t=100,n=14)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité Von Neuman version Runs')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines Von Neuman (Runs)')
+  abline(h=0.01, col="red")
 }
 #Cette fonction fournit un test de runs pour le générateur Mersenne Twister 
 # il s'agit de visualiser un histogramme des probabilités calculés pour t initialisations 
@@ -238,6 +243,7 @@ testRunsMers<-function(k=1000,t=100,n=32)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité Mersenne Twister version Runs')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines Mersenne Twister (Runs)')
+  abline(h=0.01, col="red")
 }
 
 #Cette fonction fournit un test de runs pour le générateur Randu 
@@ -260,6 +266,8 @@ testRunsRandu<-function(k=1000,t=100,n=31)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité Randu version Runs')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines Randu (Runs)')
+  abline(h=0.01, col="red")
+  
 }
 
 #Cette fonction fournit un test de runs pour le générateur Standard Minimal 
@@ -282,6 +290,7 @@ testRunsStd<-function(k=1000,t=100,n=31)
   
   hist(freq,100,xlab='',main='Fréquence de probabilité Standard Minimal version Runs')
   plot(graine,freq, main='Courbe des probabilités en fonction des graines Standard Minimal(Runs)')
+  abline(h=0.01, col="red")
 }
 ##############################################################################################
 
