@@ -1,5 +1,3 @@
-#######T
-
 Frequency <-function (x,nb)
 {
   sn<-0

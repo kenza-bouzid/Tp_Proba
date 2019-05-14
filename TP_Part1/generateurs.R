@@ -46,6 +46,10 @@ Congruence <- function(k, graine, m, a, b=0)
   {
     x[i+1]<-(a*x[i]+b)%%m
   }
+ #for(i in 1:k)
+  #{
+    #x[i]<-x[i]/m
+  #}
   return(x)
 }
 

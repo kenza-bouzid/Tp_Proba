@@ -83,7 +83,7 @@ Nous obtenons les courbes suivantes:
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testVisuelPlot()
+  #testVisuelPlot()
 ```
 
 ***
@@ -124,7 +124,7 @@ Nous exploitons ces valeurs de trois manières différentes.
 
 * Commentaire
 
-Pour 100 tests différents, on observe pour Von Neumann, une fréquence extrêmement élevé pour des Pvaleurs très petites. C'est à dire que dans la majorité des cas, Von Neumann obtient une Pvaleur en dessous dudit 1%. On voit aussi que S<sub>obs</sub> ne suit pas une loi normale centrée réduite N(0,1), tout cela nous pousse à conclure que Von Neumann ne passe pas le test de fréquence Monobit.
+Pour 100 tests différents, on observe pour Von Neumann, une fréquence extrêmement élevé pour des Pvaleurs très petites. C'est à dire que dans la majorité des cas, Von Neumann obtient une Pvaleur en dessous dudit 1%. On voit aussi que S<sub>obs</sub> ne suit pas une loi normale N(0,1), tout cela nous pousse à conclure que Von Neumann ne passe pas le test de fréquence Monobit.
 
 ***
 
@@ -264,9 +264,4 @@ Ici on observe quelque chose d'intéressant. Randu qui n'avait pas passé les de
 
 On voit que pour Standard Minimal, on a que quelques Pvaleurs en dessous de 0, on peut en conclure que le générateur passe le test d'ordre.
 
-***
-## Conclusion 
-
-***
-# Partie 2 : Application aux files d'attente
 ***
