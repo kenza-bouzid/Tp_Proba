@@ -1,5 +1,4 @@
 
-
 VonNeumann <- function(n, p=1, graine)
 {
   x <-  rep(graine,n*p+1)

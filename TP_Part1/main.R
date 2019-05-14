@@ -17,7 +17,7 @@ library('randtoolbox')
 ## cette fonction fournit les histogrammes des séquences produites par les différents générateurs 
 testVisuelHist<-function (k=1000,g=215)
 {
-  par(mfrow=c(2,2))
+  #par(mfrow=c(2,2))
   
   x<-VonNeumann(k,graine=g)
   hist(x[,1],100,xlab='',main='Von Neumann')
@@ -37,7 +37,7 @@ testVisuelHist<-function (k=1000,g=215)
 ## cette fonction fournit les courbes des séquences produites par les différents générateurs
 testVisuelPlot<-function (n=1000, g=215)
 {
-  par(mfrow=c(2,2))
+  #par(mfrow=c(2,2))
   
   x<-VonNeumann(n,graine=g)
   plot(x[1:(n-1)], x[2:n],main='Von Neumann')
@@ -67,7 +67,7 @@ testVisuelPlot<-function (n=1000, g=215)
 # pour Mersenne obtenu grâce à la partie entière de log2(9999) + 1
 testFreqVon<-function(k=1000,t=100,n=14)
 {
-  par(mfrow=c(2,2))
+  #par(mfrow=c(2,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -81,10 +81,11 @@ testFreqVon<-function(k=1000,t=100,n=14)
     sobs[i]<-Sobs(y,n)
   }
   
-  hist(freq,100,xlab='',main='Fréquence de probabilité Von Neuman')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines Von Neuman')
+  
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - Von Neuman')
   abline(h=0.01, col="red")
-  plot(sobs,freq,main='Verification de la loi normal pour Von Neumann')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Von Neuman')
+  plot(sobs,freq,main='Verification de la loi normal - Von Neumann')
 }
 
 #Cette fonction fournit un test de fréquence pour le générateur Mersenne Twister
@@ -95,7 +96,7 @@ testFreqVon<-function(k=1000,t=100,n=14)
 # pour Mersenne 
 testFreqMers<-function(k=1000,t=100,n=32)
 {
-  par(mfrow=c(2,2))
+  #par(mfrow=c(2,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -109,10 +110,11 @@ testFreqMers<-function(k=1000,t=100,n=32)
     sobs[i]<-Sobs(y,n)
   }
   
-  hist(freq,100,xlab='',main='Fréquence de probabilité Mersenne Twister')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines Mersenne Twister')
+
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - Mersenne Twister')
   abline(h=0.01, col="red")
-  plot(sobs,freq,main='Verification de la loi normal pour Mersenne Twister')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister')
+  plot(sobs,freq,main='Verification de la loi normal - Mersenne Twister')
 }
 
 #Cette fonction fournit un test de fréquence pour le générateur Randu
@@ -123,7 +125,7 @@ testFreqMers<-function(k=1000,t=100,n=32)
 # pour Randu 
 testFreqRandu<-function(k=1000, t=100, n=31)
 {
-  par(mfrow=c(2,2))
+  #par(mfrow=c(2,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -136,11 +138,11 @@ testFreqRandu<-function(k=1000, t=100, n=31)
     freq[i]<-Frequency(y,n)
     sobs[i]<-Sobs(y,n)
   }
-  
-  hist(freq,100,xlab='',main='Fréquence de probabilité Randu')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines Randu')
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - Randu')
   abline(h=0.01, col="red")
-  plot(sobs,freq,main='Verification de la loi normal pour Randu')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Randu')
+  plot(sobs,freq,main='Verification de la loi normal - Randu')
+  
 }
 
 #Cette fonction fournit un test de fréquence pour le générateur Standard Minimal
@@ -151,7 +153,7 @@ testFreqRandu<-function(k=1000, t=100, n=31)
 # pour Standard Minimal 
 testFreqStd<-function(k=1000, t=100, n=31)
 {
-  par(mfrow=c(2,2))
+  #par(mfrow=c(2,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -164,11 +166,11 @@ testFreqStd<-function(k=1000, t=100, n=31)
     freq[i]<-Frequency(y,n)
     sobs[i]<-Sobs(y,n)
   }
-  
-  hist(freq,100,xlab='',main='Fréquence de probabilité StandardMinimal')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines StandardMinimal')
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - StandardMinimal')
   abline(h=0.01, col="red")
-  plot(sobs,freq,main='Verification de la loi normal pour StandardMinimal')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - StandardMinimal')
+  plot(sobs,freq,main='Verification de la loi normal - StandardMinimal')
+  
 }
 
 ##############################################################################################
@@ -180,6 +182,7 @@ testFreqStd<-function(k=1000, t=100, n=31)
 
 testRuns<-function()
 {
+  #par(mfrow=c(1,2))
   ##varier les valeurs de graines 
   g<-sample.int(10000,1)
   
@@ -208,7 +211,7 @@ testRuns<-function()
 # pour Von Neumann obtenu grâce à la partie entière de log2(9999) + 1
 testRunsVon<-function(k=1000,t=100,n=14)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -218,11 +221,9 @@ testRunsVon<-function(k=1000,t=100,n=14)
     graine[i]<-sample.int(10000,1)
     freq[i]<-Runs(y<-VonNeumann(k,graine=graine[i]),n)
   }
-  
-  hist(freq,100,xlab='',main='Fréquence de probabilité Von Neuman version Runs')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines Von Neuman (Runs)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Von Neumann - runs')
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - Von Neumann - Runs')
   abline(h=0.01, col="red")
-  
 }
 #Cette fonction fournit un test de runs pour le générateur Mersenne Twister 
 # il s'agit de visualiser un histogramme des probabilités calculés pour t initialisations 
@@ -231,7 +232,7 @@ testRunsVon<-function(k=1000,t=100,n=14)
 # pour Mersenne
 testRunsMers<-function(k=1000,t=100,n=32)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -242,8 +243,8 @@ testRunsMers<-function(k=1000,t=100,n=32)
     freq[i]<-Runs(y<-MersenneTwister(k,graine=graine[i]),n)
   }
   
-  hist(freq,100,xlab='',main='Fréquence de probabilité Mersenne Twister version Runs')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines Mersenne Twister (Runs)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - runs')
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - Mersenne Twister - Runs')
   abline(h=0.01, col="red")
 }
 
@@ -254,7 +255,7 @@ testRunsMers<-function(k=1000,t=100,n=32)
 # pour Randu
 testRunsRandu<-function(k=1000,t=100,n=31)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -265,8 +266,8 @@ testRunsRandu<-function(k=1000,t=100,n=31)
     freq[i]<-Runs(y<-Randu(k,graine=graine[i]),n)
   }
   
-  hist(freq,100,xlab='',main='Fréquence de probabilité Randu version Runs')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines Randu (Runs)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Randu - runs')
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - Randu - Runs')
   abline(h=0.01, col="red")
   
 }
@@ -278,7 +279,7 @@ testRunsRandu<-function(k=1000,t=100,n=31)
 # pour Standard Minimal
 testRunsStd<-function(k=1000,t=100,n=31)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   freq<-rep(1,t)
   graine<-rep(1,t)
@@ -289,8 +290,8 @@ testRunsStd<-function(k=1000,t=100,n=31)
     freq[i]<-Runs(y<-StandardMinimal(k,graine=graine[i]),n)
   }
   
-  hist(freq,100,xlab='',main='Fréquence de probabilité Standard Minimal version Runs')
-  plot(graine,freq, main='Courbe des probabilités en fonction des graines Standard Minimal(Runs)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - StandardMinimal - runs')
+  plot(graine,freq, main='Courbe de pvaleur en fonction de graines - StandardMinimal - Runs')
   abline(h=0.01, col="red")
 }
 ##############################################################################################
@@ -300,28 +301,6 @@ testRunsStd<-function(k=1000,t=100,n=31)
 
 ###################################Test Ordre#################################################
 
-testOrdre<-function()
-{
-  ##varier les valeurs de graines 
-  g<-sample.int(10000,1)
-  g
-  x<-VonNeumann(1000,graine=g)
-  ##??? on prend log2 de 9999 pour définir le nbre de bit de von neumann
-  Von<-order.test(x[,1],d=4,echo=FALSE)$p.value
-  Von
-  
-  y<-MersenneTwister(1000,graine=g)
-  Mers<-order.test(y[,1],d=4,echo=FALSE)$p.value
-  Mers
-  z<-Randu(1000,graine = g)
-  Ran<-order.test(z,d=4,echo=FALSE)$p.value
-  Ran
-  t<-StandardMinimal(1000,graine = g)
-  Std<-order.test(t,d=4,echo=FALSE)$p.value
-  Std
-}
-
-##############################################################################################
 
 testOrdreVon<-function(k=1000,t=100)
 {
@@ -337,8 +316,8 @@ testOrdreVon<-function(k=1000,t=100)
     ordre[i]<-order.test(x[,1],d=4,echo=FALSE)$p.value
   }
   
-  hist(ordre,100,xlab='',main='Fréquence de probabilité Von Neuman version Ordre')
-  plot(graine,ordre, main='Courbe des probabilités en fonction des graines Von Neuman (Ordre)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - ordre')
+  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - Mersenne Twister - ordre')
   abline(h=0.01, col="red")
 }
 
@@ -355,9 +334,8 @@ testOrdreMers<-function(k=1000,t=100)
     x<-MersenneTwister(k,graine=graine[i])
     ordre[i]<-order.test(x[,1],d=4,echo=FALSE)$p.value
   }
-  
-  hist(ordre,100,xlab='',main='Fréquence de probabilité MT version Ordre')
-  plot(graine,ordre, main='Courbe des probabilités en fonction des graines MT (Ordre)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - ordre')
+  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - Mersenne Twister - ordre')
   abline(h=0.01, col="red")
 }
 
@@ -373,9 +351,8 @@ testOrdreRandu<-function(k=1000,t=100)
     graine[i]<-sample.int(10000,1)
     ordre[i]<-order.test(Randu(k,graine=graine[i]),d=4,echo=FALSE)$p.value
   }
-  
-  hist(ordre,100,xlab='',main='Fréquence de probabilité Randu version Ordre')
-  plot(graine,ordre, main='Courbe des probabilités en fonction des graines Randu (Ordre)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Randu - ordre')
+  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - Randu - ordre')
   abline(h=0.01, col="red")
 }
 
@@ -393,9 +370,10 @@ testOrdreStd<-function(k=1000,t=100)
     ordre[i]<-order.test(StandardMinimal(k,graine=graine[i]),d=4,echo=FALSE)$p.value
   }
   
-  hist(ordre,100,xlab='',main='Fréquence de probabilité Std version Ordre')
-  plot(graine,ordre, main='Courbe des probabilités en fonction des graines Std (Ordre)')
+  hist(freq,100,xlab='',main='Fréquence des pvaleurs - StandardMinimal - ordre')
+  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - StandardMinimal - ordre')
   abline(h=0.01, col="red")
 }
 
+##############################################################################################
 
