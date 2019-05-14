@@ -314,7 +314,7 @@ On voit que pour Standard Minimal, on a que quelques Pvaleurs en dessous de 0, o
 
 ***
 
-# Conclusion Partie 1 
+## Conclusion Partie 1 
 
 Nous concluons à l'issu de ses différents tests statistiques que le caractère aléatoire du générateur Von Neumann est très limité par rapport aux autres générateurs. LE générateur Randu s'est montré aléatoire à l'issu du premier et dernier test mais nous restons très douteux de son pouvoir à garantir un caractère tout à fait pour les différentes graines générées. Mersenne Twister et Standard Minimum ont compte à eux réussi tous les tests.
 
