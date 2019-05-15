@@ -181,7 +181,7 @@ testFreqStd<-function(k=1000, t=100, n=31)
 
 ###################################Test Runs##################################################
 
-testRuns<-function()
+testVérifRuns<-function()
 {
   #par(mfrow=c(1,2))
   ##varier les valeurs de graines 
@@ -220,7 +220,7 @@ testRunsVon<-function(k=1000,t=100,n=14)
   for( i in 1:t)
   {
     graine[i]<-sample.int(10000,1)
-    freq[i]<-Runs(y<-VonNeumann(k,graine=graine[i]),n)
+    freq[i]<-Runsbis(y<-VonNeumann(k,graine=graine[i]),n)
   }
   hist(freq,100,xlab='',main='Fréquence des pvaleurs - Von Neumann - runs')
   plot(graine,freq, main='Courbe de pvaleur en fonction de graines - Von Neumann - Runs')
@@ -241,7 +241,7 @@ testRunsMers<-function(k=1000,t=100,n=32)
   for( i in 1:t)
   {
     graine[i]<-sample.int(10000,1)
-    freq[i]<-Runs(y<-MersenneTwister(k,graine=graine[i]),n)
+    freq[i]<-Runsbis(y<-MersenneTwister(k,graine=graine[i]),n)
   }
   
   hist(freq,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - runs')
@@ -264,7 +264,7 @@ testRunsRandu<-function(k=1000,t=100,n=31)
   for( i in 1:t)
   {
     graine[i]<-sample.int(10000,1)
-    freq[i]<-Runs(y<-Randu(k,graine=graine[i]),n)
+    freq[i]<-Runsbis(y<-Randu(k,graine=graine[i]),n)
   }
   
   hist(freq,100,xlab='',main='Fréquence des pvaleurs - Randu - runs')
@@ -288,7 +288,7 @@ testRunsStd<-function(k=1000,t=100,n=31)
   for( i in 1:t)
   {
     graine[i]<-sample.int(10000,1)
-    freq[i]<-Runs(y<-StandardMinimal(k,graine=graine[i]),n)
+    freq[i]<-Runsbis(y<-StandardMinimal(k,graine=graine[i]),n)
   }
   
   hist(freq,100,xlab='',main='Fréquence des pvaleurs - StandardMinimal - runs')
@@ -377,13 +377,54 @@ testOrdreStd<-function(k=1000,t=100)
 }
 
 ##############################################################################################
+# cette fonction permet de tracer des courbes de simulation pour des files d'attente
 testFileAttente<-function( lambda , mu ,d ){
+  par(mfrow=c(1,2))
   liste1<-FileMM1(lambda ,mu,d);
   evolution1<-Evolution(liste1[[1]],liste1[[2]]); 
-  plot(evolution1[[2]],evolution1[[1]], main='Courbe évolution file', type='s');
-  moy1<-MoyenneClient(evolution1[[1]],evolution1[[2]]);
-  temps1<-TempsPresence(liste1[[1]],liste1[[2]]);
-  moyTheo<-(8/15)/(1-8/15); 
+  plot(evolution1[[2]],evolution1[[1]], main='Courbe évolution file-Simu1', type='s');
+  
+  liste1<-FileMM1(lambda ,mu,d);
+  evolution1<-Evolution(liste1[[1]],liste1[[2]]); 
+  plot(evolution1[[2]],evolution1[[1]], main='Courbe évolution file-Simu2', type='s');
 }
+
+testLittle<-function(lambda, mu , d)
+{
+  liste<-FileMM1(lambda ,mu,d);
+  evolution<-Evolution(liste[[1]],liste[[2]]); 
+  moy<-MoyenneClient(evolution[[1]],evolution[[2]]);
+  temps<-TempsPresence(liste[[1]],liste[[2]]);
+  moyTheo<-(lambda/mu)/(1-lambda/mu); 
+  tempsLittle<-moy/lambda; 
+  ecartTheoMoy<-abs(moyTheo-moy);
+  ecartTheoTemps<-abs(tempsLittle-temps); 
+  return(list(moy,temps,tempsLittle,ecartTheoTemps))
+}
+
+testnfois<-function(lambda,mu,d,n)
+{
+  moy<-0; 
+  ecartTheoMoy<-0;
+  temps<-0;
+  tempsLittle<-0; 
+  ecartTheoTemps<-0;
+  liste<-0;
+  for (i in 1:n)
+  {
+    liste<-testLittle(lambda,mu,d);
+    moy<-moy+liste[[1]];
+    temps<-temps+liste[[2]]; 
+    tempsLittle<-tempsLittle+liste[[3]];
+    ecartTheoTemps<-ecartTheoTemps+liste[[4]];
+  }
+  moy<-moy/n; 
+  temps<-temps/n; 
+  tempsLittle<-tempsLittle/n; 
+  ecartTheoTemps<-(ecartTheoTemps/n);
+  return(list(moy,temps,tempsLittle,ecartTheoTemps)); 
+}
+  
+  
 
 

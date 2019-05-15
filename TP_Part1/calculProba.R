@@ -32,7 +32,7 @@ Sobs <-function (x,nb)
   sobs<-abs(sn)/sqrt(length(x)*nb)
   return(sobs)
 }
-
+#Ceci est l'implémentation de la fonction Runs de manière naive sans tenir compte de la compléxité mémoire 
 Runs<-function(x,nb)
 {
   vBit<-0 
@@ -60,7 +60,7 @@ Runs<-function(x,nb)
   }
   return (2*( 1-pnorm( abs(vobs-2*n*p*(1-p)) / (2*sqrt(n)*p*(1-p))) ) )
 }
-
+#Cela est une implémentation moins gourmande en mémoire, nous utiliserons celle ci pour nos tests 
 Runsbis<-function(x,nb)
 {
   p<-0

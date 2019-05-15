@@ -41,7 +41,7 @@ Nous obtenons les histogrammes suivants pour k=1000 valeurs :
 ```{r echo=FALSE , message=FALSE}
   source('main.R')
 
-  testVisuelHist(k=1000)
+  #testVisuelHist(k=1000)
 ```
 
 ***
@@ -58,8 +58,7 @@ Les hsitogrammes suivants sont obtenues avec k = 100000 valeurs:
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  source('main.R')
-  testVisuelHist(k=100000)
+  #testVisuelHist(k=100000)
 ```
 
 ***
@@ -82,7 +81,7 @@ Nous obtenons les courbes suivantes :
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testVisuelPlot()
+  #testVisuelPlot()
 ```
 
 ***
@@ -128,7 +127,7 @@ Les graphiques suivants représentent notre étude pour chacun des générateurs
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testFreqVon()
+  #testFreqVon()
 ```
 
 ***
@@ -143,7 +142,7 @@ On voit aussi que S<sub>obs</sub> ne suit pas une loi normale N(0,1), tout cela 
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testFreqMers()
+  #testFreqMers()
 ```
 
 ***
@@ -161,7 +160,7 @@ Et on observe aussi que S<sub>obs</sub> suit une loi normale N(0,1) ce qui nous 
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testFreqRandu()
+  #testFreqRandu()
 ```
 
 ***
@@ -175,7 +174,7 @@ Pour Randu on quelque chose qui a l'air un peu meilleur que Von Neumann mais on 
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testFreqStd()
+  #testFreqStd()
 ```
 
 ***
@@ -200,7 +199,7 @@ Ain d'exploiter les résultats de ce test, nous nous sommes limités à évaluer
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testRunsVon()
+  #testRunsVon()
 ```
 
 ***
@@ -214,7 +213,7 @@ Ici on effectue un test Run pour le générateur de Von Neumann. On observe ains
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testRunsMers()
+  #testRunsMers()
 ```
 
 ***
@@ -226,7 +225,7 @@ Pour Mersenne Twister, très peu de Pvaleurs proches de 0 sont observés et aucu
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testRunsRandu()
+  #testRunsRandu()
 ```
 
 ***
@@ -240,7 +239,7 @@ Randu est nettement meilleur que Von Neumann mais on observe que presque 70 Pval
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testRunsStd()
+  #testRunsStd()
 ```
 
 ***
@@ -266,7 +265,7 @@ Nous obtenons les graphiques suivants pour les différents générateurs.
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testOrdreVon()
+  #testOrdreVon()
 ```
 ***
 
@@ -279,7 +278,7 @@ On voit que les Pvaleurs sont soit nul soit très inférieur à 0,01. On en conc
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testOrdreMers()
+  #testOrdreMers()
 ```
 ***
 
@@ -291,7 +290,7 @@ Comme pour les autres tests, le générateur de Mersenne Twistes passe largement
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testOrdreRandu()
+  #testOrdreRandu()
 ```
 ***
 
@@ -303,7 +302,7 @@ Ici on observe quelque chose d'intéressant. Randu qui n'avait pas passé les de
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testOrdreStd()
+  #testOrdreStd()
 ```
 ***
 
@@ -319,11 +318,12 @@ Nous concluons à l'issue de ses différents tests statistiques que le caractèr
 
 ***
 # Partie2 : Application aux files d'attente
-
+***
 
 Après avoir étudié ces différents générateurs de nombres aléatoires , nous nous intéressons dans cette partie à la modélisation d'un problème classique qui est celui des files d'attente.
 
 ## Files M/M/1
+
 Afin de simuler un comportement type observé sur une file d'attente pendant une période D, nous avons implémenté la fonction FieMM1 qui permet de générer aléatoirement les temps d'arrivée et de départ selon le processus de poisson sur une file d'attente suivant le modèle M/M/1.
 Nous disposons d'un seul serveur, le temps de départ et d'arrivée suivent respectivement des lois exponentielles de paramètres $\lambda$ et $\mu$.
 
@@ -332,41 +332,43 @@ Une fois cette fonction implémentée, nous avons procédé à l'évaluation du 
 ### Simulation de files d'attente
 
 Nous présentons dans ce qui suit, l'évolution du nombre de clients dans le système pendant 12heures pour différentes valeurs des paramètres $\lambda$ et $\mu$.
+Il faut noté que les courbes suivantes représentent un cas particulier résultant de la génération aléatoire des dates de départ et d'arrivée, nous nous sommes basés sur plusieurs simulations afin de juger de manière pertinente le comportement des files d'attente en fonction de ces paramètres. 
+Afin d'alléger le compte rendu, nous nous limitons à deux simulations par paramètres. 
+
 
 * Simulation 1: $\lambda$=8 et $\mu$=15
 
 ***
-
 ```{r echo=FALSE , message=FALSE}
-  testFileAttente(8,15,12)
+  #testFileAttente(8,15,12)
 ```
 ***
 
 *Commentaire: 
 
-Nous remarquons que nous sommes dans le cas d'une file d'attente dans un état stable. Les entrées et sorties de clients ont l'air d'être bien maîtrisées.
-Nous sommes dans le cas $\mu$ > $\lambda$ et donc un rapport $\alpha=\lambda / \mu$ témoignant du traffic sur le serveur inférieur à 1, le système a atteint ainsi un régime stationnaire. Un tel état se caractérise par une forte stabilité. En effet, le service semble être très satisfaisant, la file se retrouve des fois vide et ne dépasse pas 5 à 6 personnes comme affluence maximale. Un client arrivant sur le serveur est tout de suite servi, on observe cela très fréquemment tout au long des 12 heures d'étude. Cela est modélisé par les rectangles qu'on rencontre fréquemment sur la courbe de hauteur =1 modélisant l'arrivée et le départ d'une seule personne. Pour des taux d'affluence maximale le système arrive très rapidement à se restabiliser autour d'un taux moins important.
+Nous remarquons que nous sommes dans le cas d'une file d'attente dans un état stable. Les entrées et sorties de clients ont l'air d'être bien maîtrisées, et nous ne remarquons pas de potentielle saturation. 
+En effet, nous sommes dans le cas $\mu$ > $\lambda$ et donc un rapport $\alpha=\lambda / \mu$ -témoignant du traffic sur le serveur- inférieur à 1, le système a atteint ainsi un régime stationnaire. Un tel état se caractérise par une forte stabilité. Le service semble être très satisfaisant, la file se retrouve des fois vide et ne dépasse pas 5 à 6 personnes comme affluence maximale. Un client arrivant sur le serveur est tout de suite servi, on observe cela très fréquemment tout au long des 12 heures d'étude. Cela est modélisé par les rectangles qu'on rencontre fréquemment sur la courbe de hauteur =1 modélisant l'arrivée et le départ d'une seule personne. Pour des taux d'affluence maximale le système arrive très rapidement à se restabiliser autour d'un taux moins important.
 Les fluctuations observées sont dû au caractère aléatoire d'arrivée des clients qui restent tout de même très difficile à maîtriser malgrè la qualité du service et la stabilité globale du sytème. Cependant ces fluctuations restent très minimes et ne nous empêche pas d'affirmer que ce modèle présente une excellente stabilité.
-Ceci est tout à fait normal comme ona un service de très haute qualité comparée aux nombres moyens de cleints.
+Ceci est tout à fait normal comme on a un service de très haute qualité comparée aux nombres moyens de clients arrivant sur la file d'attente.
 
 * Simulation 2: $\lambda$=14 et $\mu$=15
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testFileAttente(14,15,12)
+  #testFileAttente(14,15,12)
 ```
 ***
 
 * Commentaire
 
-On voit que pour un $\alpha$ très proche de 1, contrairement à l'exemple précédent. Nous avons beaucoup de mal à prédire le comportement de la courbe. Le modèle est beaucoup plus soumis à l'aléatoire. Le nombre de client en attente peut monter très haut sur une durée très longue et redescendre abrutement dans certains cas. Mais on peut aussi avoir un cas ou le nombre de clients augmente et descend très rapidement sur des petits intervalles de temps.
+On voit que pour un $\alpha$ très proche de 1, contrairement à l'exemple précédent. Nous avons beaucoup de mal à prédire le comportement de la courbe. Le modèle est beaucoup plus soumis à l'aléatoire. Le nombre de client en attente peut monter très haut sur une durée très longue et redescendre abrutement dans certains cas. Mais on peut aussi avoir un cas ou le nombre de clients augmente et descend très rapidement sur des petits intervalles de temps. Ceci est du au fait qu'on soit à la limite séparant la stabilité de la sturation du sytème. 
 
 
-*  Simulation 2: $\lambda$ = 15 et $\mu$ = 15
+* Simulation 3: $\lambda$ = 15 et $\mu$ = 15
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testFileAttente(15,15,12)
+  #testFileAttente(15,15,12)
 ```
 ***
 * Commentaire
@@ -377,10 +379,76 @@ On a un comportement très similaire que le graphique précédent. Ici \$alpha$ 
 
 ***
 ```{r echo=FALSE , message=FALSE}
-  testFileAttente(20,15,12)
+  #testFileAttente(20,15,12)
 ```
 ***
 
 * Commentaire
 
-On a ici un * $\alpha$ supérieur à 0. C'est à dire qu'on plus de personnes arrivant dans la file que de personne partant de la file. Le nombre de personnes croît continuellement, on a donc ici une courbe prédictible qui va systématiquement diverger.   
+On a ici un * $\alpha$ supérieur à 0. C'est à dire qu'on plus de personnes arrivant dans la file que de personne partant de la file. Le nombre de personnes croît continuellement, on a donc ici une courbe prédictible qui va systématiquement diverger, on atteint la saturation assez 
+
+### Vérification de la formule de Little
+
+Nous nous intéressons dans cette partie à l'étude de régime stationnaire. Nous étudierosn ainsi différentes simulations dont l'intensité du traffic est inférieur à 1 afin de garantir le caractère stable de la simulation et pourvoir appliquer les différentes approximations. 
+Il s'agira ainsi d'estimer le nombre moyen de clients dans le système ainsi que le temps de présence d'un client dans le sytème. 
+Le nombre moyen de clients peut être obtenu en calculant la moyenne du nombre de clients sur l'intervalle de temps étudié. Cette moyenne peut être obtenu en calculant la somme totale des clients représentée par la surface sous la courbe de simulation puis en divisant par l'intervalle d'étude. Comme nous ne disposons pas de la fonction décrivant l'évolution du nombre de clients pendant le temps, nous sommes incapable de calculer cette surface grâce à une integrale, cependant nous arrivons à approximer cette surface grâce à une somme de riemanne. Nous considérons que nos intervalles de temps sont assez fin afin de garantir un minimum de justesse et de finess à nos calculs. 
+Le temps de présence moyen d'un client est facilement calculable en sommant les temps d'attente élémentaires et en moyennant cette somme on arrive facilement à estimer ce temps. 
+Un fois ces nombres déterminés, nous vérifierons si ces valeurs s'approchent des valeurs théoriques en comparant le nombre de clients moyen à la valeur $\alpha/\alpha-1$ et en vérifiant la validité de la formule de Little. 
+
+Un exemple de simulation étant généré aléatoirement ne suffit pas pour conclure, nous calculerons ainsi ces différents taux pour plusieurs simulations de $\alpha$ respectant l'hypothèse de système stationnaire. Nous réaliserons nos calculs pour des intervalles de temps plus larges afin de minimiser les portentielles erreurs. 
+
+Nous présentons notre étude dans le tableau suivant: nous avons réalisé 100 simulations différentes pour chaque valeur de $\lambda$ afin d'obtenir une meilleure précision en minimisant les erreurs éventuelles dûes à l'aléatoire.
+
+```{r echo=FALSE , message=FALSE}
+    liste1<-testnfois(8,15,12,100);
+    liste2<-testnfois(14,15,12,100);
+```
+***
+$\lambda$|nbClient moyen| TmpPrésence | TmpLittle | EcartThéorique 
+------------|--------------|-------------|-----------|-----------
+8|`r liste1[[1]]`|`r liste1[[2]]`|`r liste1[[3]]`|`r liste1[[4]]`
+14|`r liste2[[1]]`|`r liste2[[2]]`|`r liste2[[3]]`|`r liste2[[4]]`
+***
+
+Ainsi pour $\alpha=0.53$ nous obtenons une nombre de client moyen de `r liste1[[1]]` ce qui est tout à fait cohérent avec la courbe d'évolution où l'on observait 1 client très fréquemment. 
+Pour les deux valeurs de $\lambda$, nous avons calculé le temps obtenu selon la formuyle de Little, on remarque un écart théorique très faible plus important dans le premier cas. On en conclut qu'on vérifie bien la formule de Little pour les deux valeurs de $\lambda$. 
+Ceci peut nous amener à confirmer encore une fois le régime stationnaire atteint par la file d'attente pour $\lambda=8$, cependant on peut rien conclure de plus pour  $\lambda=14$ malgrè qu'elle vérifie la formule de Little. En effet,sa courbe d'évolution représente un caractère pas tout à fait stationnaire comme nous l'avons précisé auparavant. 
+
+On pourrait également essayer d'augmenter l'intervalle d'étude pour rafiner les calculs et voir à quel poin t on peut se rapprocher de la formule de Little. Le tableau suivant, récapitule les résulatas obtenus pour une même valeur de  $\lambda=8$, 100 simulations et une période de temps variable allant de 24 à 200 heures. 
+
+```{r echo=FALSE , message=FALSE}
+    liste1<-testnfois(8,15,24,100);
+    liste2<-testnfois(8,15,70,100);
+    liste3<-testnfois(8,15,300,100);
+```
+***
+nbHeures|nbClient moyen| TmpPrésence | TmpLittle | EcartThéorique 
+------------|--------------|-------------|-----------|-----------
+24|`r liste1[[1]]`|`r liste1[[2]]`|`r liste1[[3]]`|`r liste1[[4]]`
+70|`r liste2[[1]]`|`r liste2[[2]]`|`r liste2[[3]]`|`r liste2[[4]]`
+300|`r liste3[[1]]`|`r liste3[[2]]`|`r liste3[[3]]`|`r liste3[[4]]`
+***
+On remarque qu'on gagne faibement en précision, on peut ainsi se resteindre à un nombre raisonnable d'heures afin d'affirmer nos observations. 
+
+Finalement on pourrait explorer d'autres valeurs de $\lambda$ afin d'évaluer à quel point on se rapproche de la formule de Little pour différentes intensité de traffic. 
+
+Nous obtenons le graphique suivant représentant l'évolution du temps de présence Théorique et le temp de Little pour différentes valeurs de $\lambda$. 
+
+```{r echo=FALSE , message=FALSE}
+    liste1<-testnfois(3,15,12,30);
+    liste2<-testnfois(5,15,12,30);
+    liste3<-testnfois(7,15,12,30);
+    liste4<-testnfois(11,15,12,30);
+```
+***
+$\lambda$|nbClient moyen| TmpPrésence | TmpLittle | EcartThéorique 
+------------|--------------|-------------|-----------|-----------
+3|`r liste1[[1]]`|`r liste1[[2]]`|`r liste1[[3]]`|`r liste1[[4]]`
+5|`r liste2[[1]]`|`r liste2[[2]]`|`r liste2[[3]]`|`r liste2[[4]]`
+7|`r liste3[[1]]`|`r liste3[[2]]`|`r liste3[[3]]`|`r liste3[[4]]`
+11|`r liste4[[1]]`|`r liste4[[2]]`|`r liste4[[3]]`|`r liste4[[4]]`
+***
+Nous remarquons ainsi que plus $\lambda$ est grand plus on se rapproche de la formule de Little. Un juste milieu est donc à trouver entre la valeur de lambda $\lambda$, le nombre d'heures d'observation afin de trouver le système le plsu stationnaire possible. 
+
+## Conclusion Partie 2
+
