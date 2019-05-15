@@ -4,9 +4,9 @@
 
 #sources# 
 
-source('D:/MesSauvegardes/Drive_d/insa/3if/S2/Proba/Tp_Proba/TP_Part1/generateurs.R')
-source('D:/MesSauvegardes/Drive_d/insa/3if/S2/Proba/Tp_Proba/TP_Part1/calculProba.R')
-source('D:/MesSauvegardes/Drive_d/insa/3if/S2/Proba/Tp_Proba/TP_Part1/fileAttente.R')
+source('generateurs.R')
+source('calculProba.R')
+source('fileAttente.R')
 library('rngWELL')
 library('randtoolbox')
 
@@ -377,31 +377,13 @@ testOrdreStd<-function(k=1000,t=100)
 }
 
 ##############################################################################################
-testFileAttente<-function(){
-  liste1<-FileMM1(8,15,12);
+testFileAttente<-function( lambda , mu ,d ){
+  liste1<-FileMM1(lambda ,mu,d);
   evolution1<-Evolution(liste1[[1]],liste1[[2]]); 
-  plot(evolution1[[2]],evolution1[[1]], main='Courbe évolution file 8/15', type='s');
+  plot(evolution1[[2]],evolution1[[1]], main='Courbe évolution file', type='s');
   moy1<-MoyenneClient(evolution[[1]],evolution[[2]]);
-  temps1<-TempsPresence(liste[[1]],liste[[2]]); 
-  
-  liste2<-FileMM1(14,15,12); 
-  evolution2<-Evolution(liste2[[1]],liste2[[2]]); 
-  plot(evolution2[[2]],evolution2[[1]], main='Courbe évolution file 14/15', type='s')
-  moy2<-MoyenneClient(evolution[[1]],evolution[[2]]);
-  temps2<-TempsPresence(liste[[1]],liste[[2]]); 
-  
-  liste3<-FileMM1(15,15,12); 
-  evolution3<-Evolution(liste3[[1]],liste3[[2]]); 
-  plot(evolution3[[2]],evolution3[[1]], main='Courbe évolution file 15/15', type='s')
-  moy3<-MoyenneClient(evolution[[1]],evolution[[2]]);
-  temps3<-TempsPresence(liste[[1]],liste[[2]]); 
-  
-  liste4<-FileMM1(20,15,12); 
-  evolution4<-Evolution(liste4[[1]],liste4[[2]]); 
-  plot(evolution4[[2]],evolution4[[1]], main='Courbe évolution file 20/15', type='s')
-  moy4<-MoyenneClient(evolution[[1]],evolution[[2]]);
-  temps4<-TempsPresence(liste[[1]],liste[[2]]); 
-
+  temps1<-TempsPresence(liste[[1]],liste[[2]]);
+  moyTheo<-(8/15)/(1-8/15); 
 }
 
 

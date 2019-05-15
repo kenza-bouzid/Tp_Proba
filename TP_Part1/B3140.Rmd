@@ -325,3 +325,25 @@ Nous concluons à l'issue de ses différents tests statistiques que le caractèr
 Après avoir étudié ces différents générateurs de nombres aléatoires , nous nous intéressons dans cette partie à la modélisation d'un problème classique qui est celui des files d'attente.
 
 ## Files M/M/1
+
+### 
+```{r echo=FALSE , message=FALSE}
+  testFileAttente(8,15,20)
+```
+
+
+
+```{r echo=FALSE , message=FALSE}
+  testFileAttente(14,15,20)
+```
+
+
+```{r echo=FALSE , message=FALSE}
+  testOrdreStd(15,15,20)
+```
+
+```{r echo=FALSE , message=FALSE}
+  testOrdreStd(20,15,20)
+```
+
+
