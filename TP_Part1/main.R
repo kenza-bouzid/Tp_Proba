@@ -4,8 +4,8 @@
 
 #sources# 
 
-source('generateurs.R')
-source('calculProba.R')
+source('D:/MesSauvegardes/Drive_d/insa/3if/S2/Proba/Tp_Proba/TP_Part1/generateurs.R')
+source('D:/MesSauvegardes/Drive_d/insa/3if/S2/Proba/Tp_Proba/TP_Part1/calculProba.R')
 library('rngWELL')
 library('randtoolbox')
 
@@ -304,7 +304,7 @@ testRunsStd<-function(k=1000,t=100,n=31)
 
 testOrdreVon<-function(k=1000,t=100)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   ordre<-rep(1,t)
   graine<-rep(1,t)
@@ -323,7 +323,7 @@ testOrdreVon<-function(k=1000,t=100)
 
 testOrdreMers<-function(k=1000,t=100)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   ordre<-rep(1,t)
   graine<-rep(1,t)
@@ -341,7 +341,7 @@ testOrdreMers<-function(k=1000,t=100)
 
 testOrdreRandu<-function(k=1000,t=100)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   ordre<-rep(1,t)
   graine<-rep(1,t)
@@ -358,7 +358,7 @@ testOrdreRandu<-function(k=1000,t=100)
 
 testOrdreStd<-function(k=1000,t=100)
 {
-  par(mfrow=c(1,2))
+  #par(mfrow=c(1,2))
   
   ordre<-rep(1,t)
   graine<-rep(1,t)
