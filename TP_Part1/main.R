@@ -316,8 +316,8 @@ testOrdreVon<-function(k=1000,t=100)
     ordre[i]<-order.test(x[,1],d=4,echo=FALSE)$p.value
   }
   
-  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - ordre')
-  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - Mersenne Twister - ordre')
+  hist(ordre,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - ordre')
+  plot(graine,ordre, main='Courbe de pvaleur en fonction des graines - Mersenne Twister - ordre')
   abline(h=0.01, col="red")
 }
 
@@ -334,8 +334,8 @@ testOrdreMers<-function(k=1000,t=100)
     x<-MersenneTwister(k,graine=graine[i])
     ordre[i]<-order.test(x[,1],d=4,echo=FALSE)$p.value
   }
-  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - ordre')
-  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - Mersenne Twister - ordre')
+  hist(ordre,100,xlab='',main='Fréquence des pvaleurs - Mersenne Twister - ordre')
+  plot(graine,ordre, main='Courbe de pvaleur en fonction des graines - Mersenne Twister - ordre')
   abline(h=0.01, col="red")
 }
 
@@ -351,8 +351,8 @@ testOrdreRandu<-function(k=1000,t=100)
     graine[i]<-sample.int(10000,1)
     ordre[i]<-order.test(Randu(k,graine=graine[i]),d=4,echo=FALSE)$p.value
   }
-  hist(freq,100,xlab='',main='Fréquence des pvaleurs - Randu - ordre')
-  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - Randu - ordre')
+  hist(ordre,100,xlab='',main='Fréquence des pvaleurs - Randu - ordre')
+  plot(graine,ordre, main='Courbe de pvaleur en fonction des graines - Randu - ordre')
   abline(h=0.01, col="red")
 }
 
@@ -370,8 +370,8 @@ testOrdreStd<-function(k=1000,t=100)
     ordre[i]<-order.test(StandardMinimal(k,graine=graine[i]),d=4,echo=FALSE)$p.value
   }
   
-  hist(freq,100,xlab='',main='Fréquence des pvaleurs - StandardMinimal - ordre')
-  plot(graine,freq, main='Courbe de pvaleur en fonction des graines - StandardMinimal - ordre')
+  hist(ordre,100,xlab='',main='Fréquence des pvaleurs - StandardMinimal - ordre')
+  plot(graine,ordre, main='Courbe de pvaleur en fonction des graines - StandardMinimal - ordre')
   abline(h=0.01, col="red")
 }
 
