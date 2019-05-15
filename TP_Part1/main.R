@@ -381,7 +381,7 @@ testFileAttente<-function( lambda , mu ,d ){
   liste1<-FileMM1(lambda ,mu,d);
   evolution1<-Evolution(liste1[[1]],liste1[[2]]); 
   plot(evolution1[[2]],evolution1[[1]], main='Courbe évolution file', type='s');
-  moy1<-MoyenneClient(evolution[[1]],evolution[[2]]);
+  moy1<-MoyenneClient(evolution1[[1]],evolution1[[2]]);
   temps1<-TempsPresence(liste[[1]],liste[[2]]);
   moyTheo<-(8/15)/(1-8/15); 
 }
