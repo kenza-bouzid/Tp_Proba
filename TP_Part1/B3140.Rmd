@@ -339,12 +339,14 @@ Afin d'alléger le compte-rendu, nous nous limitons à deux simulations par para
 * Simulation 1 : $\lambda$=8 et $\mu$=15
 
 ***
+
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(8,15,12)
 ```
+
 ***
 
-*Commentaire: 
+* Commentaire: 
 
 Nous remarquons que nous sommes dans le cas d'une file d'attente dans un état stable. Les entrées et sorties de clients ont l'air d'être bien maîtrisées, et nous ne remarquons pas de potentielle saturation. 
 En effet, nous sommes dans le cas $\mu$ > $\lambda$ et donc un rapport $\alpha=\lambda / \mu$ -témoignant du traffic sur le serveur- inférieur à 1, le système a atteint ainsi un régime stationnaire. Un tel état se caractérise par une forte stabilité. Le service semble être très satisfaisant, la file se retrouve des fois vide et ne dépasse pas 5 à 6 personnes comme affluence maximale. Un client arrivant sur le serveur est tout de suite servi, on observe cela très fréquemment tout au long des 12 heures d'étude. Cela est modélisé par les rectangles qu'on rencontre fréquemment sur la courbe de hauteur =1 modélisant l'arrivée et le départ d'une seule personne. Pour des taux d'affluence maximale le système arrive très rapidement à se restabiliser autour d'un taux moins important.
@@ -354,9 +356,11 @@ Ceci est tout à fait normal comme on a un service de très haute qualité compa
 * Simulation 2 : $\lambda$=14 et $\mu$=15
 
 ***
+
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(14,15,12)
 ```
+
 ***
 
 * Commentaire
@@ -367,20 +371,26 @@ On voit que pour un $\alpha$ très proche de 1, contrairement à l'exemple préc
 * Simulation 3 : $\lambda$ = 15 et $\mu$ = 15
 
 ***
+
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(15,15,12)
 ```
+
 ***
+
 * Commentaire
 
 On a un comportement très similaire que le graphique précédent. Ici \$alpha$ est égal à 1, on a donc le même comportement imprédictible que précédemment.
 
 * Simulation 4 : $\lambda$ = 20 et $\mu$ = 15
 
+
 ***
+
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(20,15,12)
 ```
+
 ***
 
 * Commentaire
@@ -403,6 +413,7 @@ Nous présentons notre étude dans le tableau suivant : nous avons réalisé 100
     liste1<-testnfois(8,15,12,100);
     liste2<-testnfois(14,15,12,100);
 ```
+
 ***
 $\lambda$|nbClient moyen| TmpPrésence | TmpLittle | EcartThéorique 
 ------------|--------------|-------------|-----------|-----------
