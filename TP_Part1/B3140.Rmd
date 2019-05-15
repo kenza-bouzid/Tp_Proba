@@ -333,30 +333,37 @@ Une fois cette fonction implémentée, nous avons procédé à l'évaluation du 
 
 Nous présentons dans ce qui suit, l'évolution du nombre de clients dans le système pendant 12heures pour différentes valeurs des paramètres $\lambda$ et $\mu$.
 
-* Simulation1 : $\lambda$=8 et $\mu$=15
+* Simulation 1: $\lambda$=8 et $\mu$=15
 
 ***
 
 ```{r echo=FALSE , message=FALSE}
-  testFileAttente(14,15,12)
+  testFileAttente(8,15,12)
 ```
 ***
 
+*Commentaire: 
 
-*Comentaire :
+Nous remarquons que nous sommes dans le cas d'une file d'attente dans un état stable. Les entrées et sorties de clients ont l'air d'être bien maîtrisées.
+Nous sommes dans le cas $\mu$ > $\lambda$ et donc un rapport $\alpha=\lambda / \mu$ témoignant du traffic sur le serveur inférieur à 1, le système a atteint ainsi un régime stationnaire. Un tel état se caractérise par une forte stabilité. En effet, le service semble être très satisfaisant, la file se retrouve des fois vide et ne dépasse pas 5 à 6 personnes comme affluence maximale. Un client arrivant sur le serveur est tout de suite servi, on observe cela très fréquemment tout au long des 12 heures d'étude. Cela est modélisé par les rectangles qu'on rencontre fréquemment sur la courbe de hauteur =1 modélisant l'arrivée et le départ d'une seule personne. Pour des taux d'affluence maximale le système arrive très rapidement à se restabiliser autour d'un taux moins important.
+Les fluctuations observées sont dû au caractère aléatoire d'arrivée des clients qui restent tout de même très difficile à maîtriser malgrè la qualité du service et la stabilité globale du sytème. Cependant ces fluctuations restent très minimes et ne nous empêche pas d'affirmer que ce modèle présente une excellente stabilité.
+Ceci est tout à fait normal comme ona un service de très haute qualité comparée aux nombres moyens de cleints.
 
+* Simulation 2: $\lambda$=14 et $\mu$=15
+
+***
+```{r echo=FALSE , message=FALSE}
+  testFileAttente(14,15,12)
+```
+***
 
 * Commentaire
 
 On voit que pour un $\alpha$ très proche de 1, contrairement à l'exemple précédent. Nous avons beaucoup de mal à prédire le comportement de la courbe. Le modèle est beaucoup plus soumis à l'aléatoire. Le nombre de client en attente peut monter très haut sur une durée très longue et redescendre abrutement dans certains cas. Mais on peut aussi avoir un cas ou le nombre de clients augmente et descend très rapidement sur des petits intervalles de temps.
 
 
-Nous remarquons que nous sommes dans le cas d'une file d'attente dans un état stable. Les entrées et sorties de clients ont l'air d'être bien maîtrisées.
-Nous sommes dans le cas $\mu$ > $\lambda$ et donc un rapport $\alpha=\lambda / \mu$ témoignant du traffic sur le serveur inférieur à 1, le système a atteint ainsi un régime stationnaire. Un tel état se caractérise par une forte stabilité. En effet, le service semble être très satisfaisant, la file se retrouve des fois vide et ne dépasse pas 5 à 6 personnes comme affluence maximale. Un client arrivant sur le serveur est tout de suite servi, on observe cela très fréquemment tout au long des 12 heures d'étude. Cela est modélisé par les rectangles qu'on rencontre fréquemment sur la courbe de hauteur =1 modélisant l'arrivée et le départ d'une seule personne. Pour des taux d'affluence maximale le système arrive très rapidement à se restabiliser autour d'un taux moins important.
-Les fluctuations observées sont dû au caractère aléatoire d'arrivée des clients qui restent tout de même très difficile à maîtriser malgrè la qualité du service et la stabilité globale du sytème. Cependant ces fluctuations restent très minimes et ne nous empêche pas d'affirmer que ce modèle présente une excellente stabilité.
-Ceci est tout à fait normal comme ona un service de très haute qualité comparée aux nombres moyens de cleints.   
+*  Simulation 2: $\lambda$ = 15 et $\mu$ = 15
 
-* $\lambda$ = 15 et $\mu$ = 15
 ***
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(15,15,12)
@@ -366,7 +373,8 @@ Ceci est tout à fait normal comme ona un service de très haute qualité compar
 
 On a un comportement très similaire que le graphique précédent. Ici \$alpha$ est égal à 1, on a donc le même comportement imprédictible que précédemment.
 
-* $\lambda$ = 20 et $\mu$ = 15
+* Simulation 3:$\lambda$ = 20 et $\mu$ = 15
+
 ***
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(20,15,12)
