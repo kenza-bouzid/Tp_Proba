@@ -7,7 +7,7 @@ html_document: default
 ---
 # Introduction 
 
-Le but de ce tp est d'évaluer la qualité de quelques générateurs aléatoires à travers des tests statistiques pour ensuite choisir un générateur adéquat pour une simulation de file d'attente.
+Le but de ce TP est d'évaluer la qualité de quelques générateurs aléatoires à travers des tests statistiques pour ensuite choisir un générateur adéquat pour une simulation de file d'attente.
 
 ***
 # Partie 1 : Tests de générateurs de pseudo-aléatoires
@@ -23,7 +23,7 @@ Après avoir implémenté les générateurs à congruence linéaire: Randu et St
 #### Histogramme d'unifromité 
 
 Ce premier test permet de visualiser la distribution des nombres aléatoires produits par les différents générateurs sur l'ensemble de l'intervalle de valeurs possibles. Cet intervalle diffère d'un générateur à un autre. 
-Le tableau suivant récapitule les intervalles des différents générateurs faisant sujet de notre étude. 
+Le tableau suivant récapitule les intervalles des différents générateurs faisant le sujet de notre étude. 
 
 Générateur | Intervalle de valeurs 
 ------------- | -------------
@@ -32,9 +32,9 @@ Mersenne Twister | [0, $2^32-1$]
 Randu | [0, $2^31-1$]
 Standard Minimal | [0, $2^32-1$]
 
-Il s'agira ainsi de représenter les séquences de valeurs produites par ces géénrateurs sous la forme d'histogramme afin d'avoir une idée sur la répartition de ces séquences. 
+Il s'agira ainsi de représenter les séquences de valeurs produites par ces générateurs sous la forme d'histogramme afin d'avoir une idée sur la répartition de ces séquences. 
 
-Nous obtenons les histogrammes suivants pour k=1000 valeurs: 
+Nous obtenons les histogrammes suivants pour k=1000 valeurs : 
 
 ***
 
@@ -48,10 +48,10 @@ Nous obtenons les histogrammes suivants pour k=1000 valeurs:
 
 * Observation 
 
-Nous relevons ainsi une distribution médiocre pour le générateur Von Neumann, avec une forte condensation autour du 0. Certains sous-intervalles de l'intaervalle [0 9999] ne sont jamais visité. Ce qui témoigne des limites de ce générateur.
+Nous relevons ainsi une distribution médiocre pour le générateur Von Neumann, avec une forte condensation autour du 0. Certains sous-intervalles de l'intervalle [0,9999] ne sont jamais visités. Ce qui témoigne des limites de ce générateur.
 
 Nous remarquons une répartition plutôt uniforme pour les générateurs Mersenne Twister, Randu et Standard Minimal, avec une meilleure stabilité pour Standard Minimal.
-Ce caractère uniforme reste tout de même criticable malgré qu'il soit meilleur que celui observé pour Von Neumann. En effet, on aurait souhaité une répartition quasi uniforme ce qui est difficilemente aténiable avec seulement 1000 valeurs par générateurs.
+Ce caractère uniforme reste tout de même critiquable malgré qu'il soit meilleur que celui observé pour Von Neumann. En effet, on aurait souhaité une répartition quasi-uniforme ce qui est difficilement aténiable avec seulement 1000 valeurs par générateurs.
 
 Les hsitogrammes suivants sont obtenues avec k = 100000 valeurs: 
 
@@ -69,9 +69,9 @@ Nous notons ainsi une meilleure uniformité. Ceci est tout à fait logique car n
 
 * Explication 
 
-Nous pouvons expliqué l'uniformité médiocre du générateur Von neumann par le fait qu'on reboucle sur certaines valeurs précises. En effet, la forte condensation en zéro est dû au fait qu'on reboucle en continue sur 0 sans en sortir une fois qu'on tombe sur une puissance de deux avec que des zéros au milieu, cette boucle est ainsi absorbante est empêche le générateur de produire de nouvelles valeurs autres que 0. Puis on reboucle de la même manière sur certaines valeurs avec une fréquence moins accrue car on arrive tout de même à sortir de ces boucles. 
+Nous pouvons expliquer l'uniformité médiocre du générateur Von neumann par le fait qu'on reboucle sur certaines valeurs précises. En effet, la forte condensation en zéro est dû au fait qu'on reboucle en continue sur 0 sans en sortir une fois qu'on tombe sur une puissance de deux avec que des zéros au milieu, cette boucle est ainsi absorbante est empêche le générateur de produire de nouvelles valeurs autres que 0. Puis on reboucle de la même manière sur certaines valeurs avec une fréquence moins accrue car on arrive tout de même à sortir de ces boucles. 
 
-En ce qui concerne les autres générateurs, leurs algorithmes sont suffisamment bons pour pouvoir assurer une aussi bonne uniformité.Un autre facteur important qui impacte considérablement le caractère uniforme de ces séquences est la graine d'initialisation. Nous utilisons une graine=215 pour nos tests qui est en l'occurence une assez bonne valeur. On aurait eu une répartition moins uniforme pour une mauvaise graine.
+En ce qui concerne les autres générateurs, leurs algorithmes sont suffisamment bons pour pouvoir assurer une aussi bonne uniformité. Un autre facteur important qui impacte considérablement le caractère uniforme de ces séquences est la graine d'initialisation. Nous utilisons une graine=215 pour nos tests qui est en l'occurrence une assez bonne valeur. On aurait eu une répartition moins uniforme pour une mauvaise graine.
 
 ***
 
@@ -79,7 +79,7 @@ En ce qui concerne les autres générateurs, leurs algorithmes sont suffisamment
 
 Une autre manière d'étudier la qualité des séquences produites consiste à observer l'inter-dépendance de celles-ci. Pour cela nous traçons la valeur obtenue en fonction de la valeur précédente de l'algorithme. 
 
-Nous obtenons les courbes suivantes: 
+Nous obtenons les courbes suivantes : 
 
 ***
 ```{r echo=FALSE , message=FALSE}
@@ -90,7 +90,7 @@ Nous obtenons les courbes suivantes:
 
 * Commentaires
 
-Nous observons ainsi une dépendance asez médiocre pour Von Neummon avec une assez forte connexion entre le zero et ses prédécesseurs. Ceci tout à fait logique encore une fois, $0^2$ étant égal à 0. On observe également des piques de dépendances pour quelques valeurs notamment autour de 4000 et 8000 qu'on retrouvait également au niveau de l'historamme.   
+Nous observons ainsi une dépendance assez médiocre pour Von Neummon avec une assez forte connexion entre le zéro et ses prédécesseurs. Ceci tout à fait logique encore une fois, $0^2$ étant égal à 0. On observe également des piques de dépendances pour quelques valeurs notamment autour de 4000 et 8000 qu'on retrouvait également au niveau de l'histogramme.   
 
 Mersenne Twister présente une dépendance plus uniforme sur l'ensemble de l'espace de valeurs. Randu et Standard Minimal présente compte à eux une dépendance plus bruitée. Leurs valeurs occupent ainsi l'ensemble de l'espace de valeur. 
  
@@ -101,21 +101,21 @@ Attention le caractère uniforme ou interdépendant d'un générateur ne juge pa
 
 ### Test de fréquence monobit
 
-Nos premiers jeux de tests étudié les séquences en elles même en visualisant leur distribution et leur inter-dépendance. Nous nous interessons dans ce qui suit à ces séquences en étudiant celles-ci bit à bit. Cela nous permettra d'évaluer le caractère aléatoire de ces différentes séquences avec plus de finesse. Il s'agira d'alligner toutes les représentation binaires des différentes séquences côte à côte et d'étudier le caractère aléatoire des valeurs que prennent ces différents bits.Ceci a pour intérêt de partiellement déterminer le caractère aléatoire du générateur étudié. 
+Nos premiers jeux de tests étudié les séquences en elles même en visualisant leur distribution et leur inter-dépendance. Nous nous intéressons dans ce qui suit à ces séquences en étudiant celles-ci bit à bit. Cela nous permettra d'évaluer le caractère aléatoire de ces différentes séquences avec plus de finesse. Il s'agira d'aligner toutes les représentation binaires des différentes séquences côte à côte et d'étudier le caractère aléatoire des valeurs que prennent ces différents bits.Ceci a pour intérêt de partiellement déterminer le caractère aléatoire du générateur étudié. 
 
 Nous allons mener pour cela un raisonnement par l'absurde. 
 
-On suppose dans un premier lieu que notre générateur X est bien aléatoire 
-On note Sn la séquence globale résulatant de la concaténation binaire des différentes séquences. Chacun des bits de cette séquence binaire suit ainsi une loi de Bernouilli. Ainsi la somme de ces bits suit une loi binomiale.  
+On suppose dans un premier lieu que notre générateur X est bien aléatoire.
+On note Sn la séquence globale résultante de la concaténation binaire des différentes séquences. Chacun des bits de cette séquence binaire suit ainsi une loi de Bernouilli. Ainsi la somme de ces bits suit une loi binomiale.  
 Selon le théorème de la limite centrale $Sn/sqrt(n)$ suit une loi normale centrée réduite. 
 
-Nous étudirons ainsi la loi de probalité suit par $|Sn|/sqrt(n)$, Si celle ci est inférieure à 1% nous affirmons selon la règle de décision à 1% que celle-ci ne suit pas notre modèle de loi normale #contradiction, notre hypothèse n'est donc pas juste et la séquece ne présnete pas un caractère aléatoire. Si par contre on obtient des probas assez élevés nous affirmerons notre hypothèse et jugerons celle-ci comme étant bien aléatoire. 
+Nous étudierons ainsi la loi de probabilité suit par $|Sn|/sqrt(n)$, Si celle-ci est inférieure à 1% nous affirmons selon la règle de décision à 1% que celle-ci ne suit pas notre modèle de loi normale #contradiction, notre hypothèse n'est donc pas juste et la séquence ne présente pas un caractère aléatoire. Si par contre on obtient des probas assez élevés nous affirmerons notre hypothèse et jugerons celle-ci comme étant bien aléatoire. 
 
 Après avoir implémenté la fonction déterminant cette valeur de probabilité. Nous réalisons des tests sur une séquence de k=1000 et pour 100 initialisations différentes. 
 
 Nous exploitons ces valeurs de trois manières différentes: 
 
-Premièrement nous souhaitons savoir si nos calculs vérifient ou pas la règle de 1%, pour cela nous présentons sous un graphique les différentes pvaleur en fonction des 100 graines aléatoires. Nous traçons une droite en rouge pour modéliser la limites à 0,01. Ceci nous permettra de juger si la règle de 1% est bien vérifié. En effet, si la plupart des séquences présentent des pvaleurs condensés autour de cette limite rouge, cela affirme le caractère médiocre du générateur contrairement à un autre dont les pvaleurs s'éloignent concidérablement de cette limite avec une forte condensation autour des valeurs de proba élevées. 
+Premièrement nous souhaitons savoir si nos calculs vérifient ou pas la règle de 1%, pour cela nous présentons sous un graphique les différentes pvaleur en fonction des 100 graines aléatoires. Nous traçons une droite en rouge pour modéliser la limite à 0,01. Ceci nous permettra de juger si la règle de 1% est bien vérifié. En effet, si la plupart des séquences présentent des pvaleurs condensés autour de cette limite rouge, cela affirme le caractère médiocre du générateur contrairement à un autre dont les pvaleurs s'éloignent considérablement de cette limite avec une forte condensation autour des valeurs de proba élevées. 
 
 Ensuite, nous souhaitons évaluer la fréquence des pvaleurs de l'ensemble des séquences afin de juger si l'on rencontre des pvaleurs suivant la règle du 1% le plus souvent ou pas. Nous représentons cela grâce à un histogramme des pvaleurs. Ces histos nous permettront de comparer la qualité de deux générateurs suivants bien une loi normale.
 
@@ -136,7 +136,7 @@ Les graphiques suivants représentent notre étude pour chacun des générateurs
 
 * Commentaire
 
-Pour 100 tests différents, on observe pour Von Neumann, une fréquence extrêmement élevé pour des Pvaleurs très petites. C'est à dire que dans la majorité des cas, Von Neumann obtient une Pvaleur en dessous dudit 1%. 
+Pour 100 tests différents, on observe pour Von Neumann, une fréquence extrêmement élevée pour des Pvaleurs très petites. C'est à dire que dans la majorité des cas, Von Neumann obtient une Pvaleur en dessous dudit 1%. 
 Les pvaleurs sont toutes condensées atour de la droite limite 1% sauf quelques exceptions. 
 On voit aussi que S<sub>obs</sub> ne suit pas une loi normale N(0,1), tout cela nous pousse à conclure que Von Neumann ne passe pas le test de fréquence Monobit.
 
@@ -186,7 +186,7 @@ Pour Randu on quelque chose qui a l'air un peu meilleur que Von Neumann mais on 
 Ici on a quelque chose de très similaire à Mersenne Twister. Pour 100 tests, très peu de Pvaleurs proches de 0  S<sub>obs</sub> suivant une loi normale N(0,1) avec une légère discontinuité quand on se rapproche de pvaleurs faibles. 
 Tout comme Mersenne Twistes, Standard Minimal passe le test de fréquence monobit.
 De plus, celui-ci représente des fréquences meilleurs que Mersenne Twister, on peut remarquer cela à partir de son histogramme mais également en observant la courbe de loi de probabilité (la discontinuité + un rapprochement plus important des pvaleurs élevées). 
-On note aussi que la discontinuité aurait pu être comblée au faisant les tests sur un nombre supérieur de valeurs. 
+On note aussi que la discontinuité aurait pu être comblée en faisant les tests sur un nombre supérieur de valeurs. 
 
 ***
 
@@ -195,7 +195,7 @@ On note aussi que la discontinuité aurait pu être comblée au faisant les test
 ***
 Il s'agira dans cette partie, d'étudier le caractère binaire des séquences générées mais cette fois ci en évaluant les suites successives de zéros et de uns dans la séquence globale observée. 
 
-Ain d'exploiter les résultats de ce test, nous nous sommes limités à évaluer la fréquence es pvaleurs ainsi que leur répartition par rapport à la limite 1% qu'on représente encore une fois par une fdroite en rouge. 
+Ain d'exploiter les résultats de ce test, nous nous sommes limités à évaluer la fréquence es pvaleurs ainsi que leur répartition par rapport à la limite 1% qu'on représente encore une fois par une droite en rouge. 
 
 #### Von Neumann
 ***
@@ -248,7 +248,7 @@ Randu est nettement meilleur que Von Neumann mais on observe que presque 70 Pval
 
 * Commentaire
 
-Standard minimal n'a que très peu de valeurs en dessous de la barre des 1%, pour la majorité des graines testés on observe bien que la séquence est aléatoire. On en conclut que Standard Minimal passe bien le test Run.
+Standard minimal n'a que très peu de valeurs en dessous de la barre des 1%, pour la majorité des graines testées on observe bien que la séquence est aléatoire. On en conclut que Standard Minimal passe bien le test Run.
 
 
 ***
@@ -286,7 +286,7 @@ On voit que les Pvaleurs sont soit nul soit très inférieur à 0,01. On en conc
 
 * Commentaire
 
-Comme pour les autres testes, le générateur de Mersenne Twistes passe largement le test.
+Comme pour les autres tests, le générateur de Mersenne Twistes passe largement le test.
 
 #### Randu 
 
@@ -298,7 +298,7 @@ Comme pour les autres testes, le générateur de Mersenne Twistes passe largemen
 
 * Commentaire
 
-Ici on observe quelque chose d'intéressant. Randu qui n'avait pas passé les deux tests précedents, passe celui-ci avec succès en n'ayant que quelques Pvaleurs en dessous de 0,01.
+Ici on observe quelque chose d'intéressant. Randu qui n'avait pas passé les deux tests précédents, passe celui-ci avec succès en n'ayant que quelques Pvaleurs en dessous de 0,01.
 
 #### Standard Minimal 
 
@@ -316,7 +316,7 @@ On voit que pour Standard Minimal, on a que quelques Pvaleurs en dessous de 0, o
 
 ## Conclusion Partie 1 
 
-Nous concluons à l'issu de ses différents tests statistiques que le caractère aléatoire du générateur Von Neumann est très limité par rapport aux autres générateurs. LE générateur Randu s'est montré aléatoire à l'issu du premier et dernier test mais nous restons très douteux de son pouvoir à garantir un caractère tout à fait pour les différentes graines générées. Mersenne Twister et Standard Minimum ont compte à eux réussi tous les tests.
+Nous concluons à l'issue de ses différents tests statistiques que le caractère aléatoire du générateur Von Neumann est très limité par rapport aux autres générateurs. LE générateur Randu s'est montré aléatoire à l'issue du premier et dernier test mais nous restons très douteux de son pouvoir à garantir un caractère tout à fait pour les différentes graines générées. Mersenne Twister et Standard Minimum ont compte à eux réussi tous les tests.
 
 ***
 # Partie2 : Application aux files d'attente 
