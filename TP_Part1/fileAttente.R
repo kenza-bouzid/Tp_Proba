@@ -38,6 +38,62 @@ FileMM1<-function(lambda,mu,D)
   return (list(xarrivee,xdepart))
 }
 
+FileMM2<-function(lambda,mu,D)
+{
+  
+  tarrivee<-rexp(1,rate=lambda); 
+  xarrivee<-0; 
+  while (tarrivee<D){
+    xarrivee<-c(xarrivee,tarrivee);
+    tsuivant<-tarrivee+rexp(1,rate=lambda); 
+    tarrivee<-tsuivant; 
+  }
+  xdepart<-0; 
+  if (length(xarrivee)>1)
+  {
+    tdepart1<-xarrivee[2]+rexp(1,rate=mu);
+    tdepart2<-xarrivee[2]+rexp(1,rate=mu);
+    tdepart<-0; 
+    panne<-0; 
+    if (tdepart1<D && tdepart2>D || tdepart1>D && tdepart2<D )
+    {
+       
+      xdepart<-c(xdepart,tdepart);
+      for(i in 3:length(xarrivee))
+      {
+        tdepart<-xarrivee[i]+rexp(1,rate=mu);
+        
+        if(xdepart[i-1]>xarrivee[i])
+        {
+          tdepart<-xdepart[i-1]+rexp(1,rate=mu);
+        } 
+        if (tdepart<D)
+        {
+          xdepart<-c(xdepart,tdepart);
+        }
+        else 
+        {
+          break;
+        }
+      }
+      if(tdepart1<D && tdepart2>D)
+      {
+        tdepart1<-c(tdepart1,tdepart);
+      }
+      else if (tdepart1>D && tdepart2<D)
+      {
+        tdepart2<-c(tdepart1,tdepart);
+      }
+    }
+    if (tdepart1<D && tdepart2<D)
+    {
+      
+    }
+  }
+  
+  return (list(xarrivee,xdepart))
+}
+
 Evolution<-function(xarrivee,xdepart)
 {
   carrivee <-2; #compteur des arrivees 
@@ -96,7 +152,7 @@ TempsPresence<-function(xarrivee,xdepart)
   {
     somme<-somme+xdepart[i]-xarrivee[i];
   }
-  return(somme/length(xdepart)); 
+  return(somme/length(xdepart)) 
 }
 
 
