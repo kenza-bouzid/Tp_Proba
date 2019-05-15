@@ -82,7 +82,8 @@ Runsbis<-function(x,nb)
   for (i in 1:length(x))
   {
     c<-binary(x[i])
-    if (i>1 && c[1]!=temp)
+    
+    if (i>1 && c[(33-nb)]!=temp)
     {
       vobs<-vobs+1
     }

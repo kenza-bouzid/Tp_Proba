@@ -52,12 +52,12 @@ Congruence <- function(k, graine, m, a, b=0)
   return(x)
 }
 
-Randu <- function (k , graine)
+Randu <- function (k=100 , graine=215)
 {
   return(Congruence(k,graine, 2^31,65539))
 }
 
-StandardMinimal <- function (k , graine)
+StandardMinimal <- function (k=100 , graine=215)
 {
   return(Congruence(k,graine, 2^31-1,16807))
 }
