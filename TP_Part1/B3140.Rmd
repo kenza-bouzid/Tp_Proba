@@ -28,8 +28,8 @@ Le tableau suivant récapitule les intervalles des différents générateurs fai
 Générateur | Intervalle de valeurs 
 ------------- | -------------
 Von Neumann | [0,9999]
-Mersenne Twister | [0, $2^32-1$] 
-Randu | [0, $2^31-1$]
+Mersenne Twister | [0, $2^{32}-1$] 
+Randu | [0, $2^{31}-1$]
 Standard Minimal | [0, $2^32-1$]
 
 Il s'agira ainsi de représenter les séquences de valeurs produites par ces générateurs sous la forme d'histogramme afin d'avoir une idée sur la répartition de ces séquences. 
@@ -59,7 +59,6 @@ Les hsitogrammes suivants sont obtenues avec k = 100000 valeurs:
 
 ```{r echo=FALSE , message=FALSE}
   source('main.R')
-  
   testVisuelHist(k=100000)
 ```
 
@@ -325,13 +324,30 @@ Nous concluons à l'issue de ses différents tests statistiques que le caractèr
 Après avoir étudié ces différents générateurs de nombres aléatoires , nous nous intéressons dans cette partie à la modélisation d'un problème classique qui est celui des files d'attente.
 
 ## Files M/M/1
+Afin de simuler un comportement type observé sur une file d'attente pendant une période D, nous avons implémenté la fonction FieMM1 qui permet de générer aléatoirement les temps d'arrivée et de départ selon le processus de poisson sur une file d'attente suivant le modèle M/M/1. 
+Nous disposons d'un seul serveur, le temps de départ et d'arrivée suivent respectivement des lois exponentielles de paramètres $\lambda$ et $\mu$.
 
-### 
+Une fois cette fonction implémentée, nous avons procédé à l'évaluation du nombre de personnes présentes dans la file d'attente pendant un intervalle de temps D. L'idée est d'observer à chaque arrivée ou départ aléatoire définit par la fonction FileMM1, le nombre de personnes total. 
+
+### Simulation de files d'attente
+
+Nous présentons dans ce qui suit, l'évolution du nombre de clients dans le système pendant 12heures pour différentes valeurs des paramètres $\lambda$ et $\mu$. 
+
+* Simulation1 : $\lambda$=8 et $\mu$=15
+
+***
+
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(8,15,20)
 ```
+***
 
+*Comentaire : 
 
+Nous remarquons que nous sommes dans le cas d'une file d'attente dans un état stable. Les entrées et sorties de clients ont l'air d'être bien maîtrisées. 
+Nous sommes dans le cas $\mu$ > $\lambda$ et donc un rapport $\alpha=\lambda / \mu$ témoignant du traffic sur le serveur inférieur à 1, le système a atteint ainsi un régime stationnaire. Un tel état se caractérise par une forte stabilité. En effet, le service semble être très satisfaisant, la file se retrouve des fois vide et ne dépasse pas 5 à 6 personnes comme affluence maximale. Un client arrivant sur le serveur est tout de suite servi, on observe cela très fréquemment tout au long des 12 heures d'étude. Cela est modélisé par les rectangles qu'on rencontre fréquemment sur la courbe de hauteur =1 modélisant l'arrivée et le départ d'une seule personne. Pour des taux d'affluence maximale le système arrive très rapidement à se restabiliser autour d'un taux moins important. 
+Les fluctuations observées sont dû au caractère aléatoire d'arrivée des clients qui restent tout de même très difficile à maîtriser malgrè la qualité du service et la stabilité globale du sytème. Cependant ces fluctuations restent très minimes et ne nous empêche pas d'affirmer que ce modèle présente une excellente stabilité. 
+Ceci est tout à fait normal comme ona un service de très haute qualité comparée aux nombres moyens de cleints.   
 
 ```{r echo=FALSE , message=FALSE}
   testFileAttente(14,15,20)
